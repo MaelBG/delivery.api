@@ -1,5 +1,3 @@
-Com base no arquivo que você forneceu, aqui está uma descrição da sua "Delivery Tech API" seguindo o template do README:
-
 Delivery Tech API
 Sistema de delivery desenvolvido com Spring Boot e Java 21.
 
