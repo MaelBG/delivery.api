@@ -18,7 +18,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     // Verificar se email já existe 
     boolean existsByEmail(String email); 
  
-    // Buscar clientes a vos 
+    // Buscar clientes ativos 
     List<Cliente> findByAtivoTrue(); 
  
     // Buscar clientes por nome (contendo) 
@@ -36,7 +36,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     nativeQuery = true) 
     List<Cliente> findByCidade(@Param("cidade") String cidade); 
  
-    // Contar clientes a vos 
+    // Contar clientes ativos 
     @Query("SELECT COUNT(c) FROM Cliente c WHERE c.ativo = true") 
     Long countClientesAtivos(); 
 }
