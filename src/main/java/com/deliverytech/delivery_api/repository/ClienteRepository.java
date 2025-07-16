@@ -39,4 +39,13 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     // Contar clientes ativos 
     @Query("SELECT COUNT(c) FROM Cliente c WHERE c.ativo = true") 
     Long countClientesAtivos(); 
+
+    // Ranking de clientes por total de pedidos (consulta nativa)
+@Query(value = "SELECT c.nome, COUNT(p.id) as total_pedidos " + //
+               "FROM cliente c " + //
+               "LEFT JOIN pedido p ON c.id = p.cliente_id " + //
+               "GROUP BY c.id, c.nome " + //
+               "ORDER BY total_pedidos DESC " + //
+               "LIMIT 10", nativeQuery = true) //
+List<Object[]> rankingClientesPorPedidos(); //
 }
