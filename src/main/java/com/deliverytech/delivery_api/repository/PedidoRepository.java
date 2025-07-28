@@ -4,6 +4,7 @@ import com.deliverytech.delivery_api.entity.Pedido;
 import com.deliverytech.delivery_api.entity.Cliente;
 import com.deliverytech.delivery_api.entity.StatusPedido;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor; // IMPORTANTE: Nova importação
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
-public interface PedidoRepository extends JpaRepository<Pedido, Long> {
+public interface PedidoRepository extends JpaRepository<Pedido, Long>, JpaSpecificationExecutor<Pedido> { // IMPORTANTE: Adicione JpaSpecificationExecutor
 
     // Buscar pedidos por cliente
     List<Pedido> findByClienteOrderByDataPedidoDesc(Cliente cliente);

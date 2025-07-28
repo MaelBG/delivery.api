@@ -1,6 +1,8 @@
 package com.deliverytech.delivery_api.repository;
 
 import com.deliverytech.delivery_api.entity.Restaurante;
+import org.springframework.data.domain.Page; // Importe para suportar paginação
+import org.springframework.data.domain.Pageable; // Importe para suportar paginação
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -9,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
-import com.deliverytech.delivery_api.repository.projections.RelatorioVendas; // Importe a projeção
+import com.deliverytech.delivery_api.repository.projections.RelatorioVendas;
 
 @Repository
 public interface RestauranteRepository extends JpaRepository<Restaurante, Long> {
@@ -19,9 +21,17 @@ public interface RestauranteRepository extends JpaRepository<Restaurante, Long> 
 
     // Buscar restaurantes ativos
     List<Restaurante> findByAtivoTrue();
+    // Buscar restaurantes ativos com paginação (Adicionado)
+    Page<Restaurante> findByAtivoTrue(Pageable pageable);
+
+    // Buscar restaurantes inativos com paginação (Adicionado)
+    Page<Restaurante> findByAtivoFalse(Pageable pageable);
 
     // Buscar por categoria (e ativos)
     List<Restaurante> findByCategoriaAndAtivoTrue(String categoria);
+    // Buscar por categoria (e ativos) com paginação (Adicionado)
+    Page<Restaurante> findByCategoriaAndAtivoTrue(String categoria, Pageable pageable);
+
 
     // Buscar por nome contendo (case insensitive)
     List<Restaurante> findByNomeContainingIgnoreCaseAndAtivoTrue(String nome);
