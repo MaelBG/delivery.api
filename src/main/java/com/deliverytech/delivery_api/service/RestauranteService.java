@@ -2,18 +2,21 @@ package com.deliverytech.delivery_api.service;
 
 import com.deliverytech.delivery_api.entity.Restaurante;
 import com.deliverytech.delivery_api.repository.RestauranteRepository;
-import com.deliverytech.delivery_api.dto.RestauranteDTO; // Importe o DTO de requisição
-import com.deliverytech.delivery_api.dto.RestauranteResponseDTO; // Importe o DTO de resposta
+import com.deliverytech.delivery_api.dto.RestauranteDTO;
+import com.deliverytech.delivery_api.dto.RestauranteResponseDTO;
+import com.deliverytech.delivery_api.exception.ConflictException; // Importar ConflictException
+import com.deliverytech.delivery_api.exception.EntityNotFoundException; // Importar EntityNotFoundException
+import com.deliverytech.delivery_api.exception.BusinessException; // Importar BusinessException (para validações mais genéricas)
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page; // Para paginação
-import org.springframework.data.domain.Pageable; // Para paginação
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors; // Para mapear listas
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -24,12 +27,10 @@ public class RestauranteService {
 
     // --- Métodos de Mapeamento (Helper Methods) ---
 
-    // Converte Restaurante (Entidade) para RestauranteResponseDTO
     private RestauranteResponseDTO toResponseDTO(Restaurante restaurante) {
         if (restaurante == null) {
             return null;
         }
-        // Assumindo que tempoEntrega e horarioFuncionamento foram persistidos/preenchidos
         return new RestauranteResponseDTO(
                 restaurante.getId(),
                 restaurante.getNome(),
@@ -39,13 +40,11 @@ public class RestauranteService {
                 restaurante.getTaxaEntrega(),
                 restaurante.getAvaliacao(),
                 restaurante.isAtivo(),
-                // Estes campos não existem na sua entidade Restaurante, então retornaremos null ou um default
-                null, // tempoEntrega - você precisaria adicionar este campo à entidade
-                null  // horarioFuncionamento - você precisaria adicionar este campo à entidade
+                restaurante.getTempoEntrega(), // Campo tempoEntrega da entidade
+                restaurante.getHorarioFuncionamento() // Campo horarioFuncionamento da entidade
         );
     }
 
-    // Converte RestauranteDTO para Restaurante (Entidade)
     private Restaurante toEntity(RestauranteDTO dto) {
         if (dto == null) {
             return null;
@@ -58,11 +57,8 @@ public class RestauranteService {
         restaurante.setTaxaEntrega(dto.getTaxaEntrega());
         restaurante.setAvaliacao(BigDecimal.ZERO); // Valor padrão ou defina conforme a lógica de negócio
         restaurante.setAtivo(true); // Padrão ao cadastrar
-
-        // Adicionar estes campos à entidade Restaurante se quiser persistí-los
-        // restaurante.setTempoEntrega(dto.getTempoEntrega());
-        // restaurante.setHorarioFuncionamento(dto.getHorarioFuncionamento());
-
+        restaurante.setTempoEntrega(dto.getTempoEntrega()); // Setar tempoEntrega
+        restaurante.setHorarioFuncionamento(dto.getHorarioFuncionamento()); // Setar horarioFuncionamento
         return restaurante;
     }
 
@@ -74,17 +70,14 @@ public class RestauranteService {
     public RestauranteResponseDTO cadastrarRestaurante(RestauranteDTO dto) {
         // Validar nome único
         if (restauranteRepository.findByNome(dto.getNome()).isPresent()) {
-            throw new IllegalArgumentException("Restaurante já cadastrado: " + dto.getNome());
+            throw new ConflictException("Restaurante já cadastrado com este nome: " + dto.getNome(), "nome", dto.getNome()); // Lança ConflictException
         }
 
-        // Validações de negócio do DTO já feitas pelo @Valid no Controller
-        // Mas podemos adicionar mais aqui se necessário, como validarTaxaEntrega (já existe no método privado)
-
-        Restaurante restaurante = toEntity(dto); // Converte DTO para Entidade
+        Restaurante restaurante = toEntity(dto);
         restaurante.setAtivo(true); // Definir como ativo por padrão
 
         Restaurante restauranteSalvo = restauranteRepository.save(restaurante);
-        return toResponseDTO(restauranteSalvo); // Converte Entidade salva para DTO de resposta
+        return toResponseDTO(restauranteSalvo);
     }
 
     /**
@@ -95,21 +88,20 @@ public class RestauranteService {
         Page<Restaurante> restaurantesPage;
 
         if (categoria != null && ativo != null) {
-            restaurantesPage = restauranteRepository.findByCategoriaAndAtivoTrue(categoria, pageable); // Assuming findByCategoriaAndAtivoTrue can accept Pageable
+            restaurantesPage = restauranteRepository.findByCategoriaAndAtivoTrue(categoria, pageable);
         } else if (categoria != null) {
-            restaurantesPage = restauranteRepository.findByCategoriaAndAtivoTrue(categoria, pageable); // You might need a specific findByCategoria that takes Pageable
+            restaurantesPage = restauranteRepository.findByCategoriaAndAtivoTrue(categoria, pageable);
         } else if (ativo != null) {
             if (ativo) {
-                restaurantesPage = restauranteRepository.findByAtivoTrue(pageable); // Assuming findByAtivoTrue can accept Pageable
+                restaurantesPage = restauranteRepository.findByAtivoTrue(pageable);
             } else {
-                restaurantesPage = restauranteRepository.findByAtivoFalse(pageable); // Assuming findByAtivoFalse can accept Pageable
+                restaurantesPage = restauranteRepository.findByAtivoFalse(pageable);
             }
         } else {
             // Se nenhum filtro, lista todos paginado
             restaurantesPage = restauranteRepository.findAll(pageable);
         }
 
-        // Mapeia a Page de entidades para uma Page de DTOs
         return restaurantesPage.map(this::toResponseDTO);
     }
 
@@ -119,7 +111,7 @@ public class RestauranteService {
     @Transactional(readOnly = true)
     public RestauranteResponseDTO buscarRestaurantePorId(Long id) {
         Restaurante restaurante = restauranteRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("Restaurante não encontrado: " + id));
+            .orElseThrow(() -> new EntityNotFoundException("Restaurante", id)); // Lança EntityNotFoundException
         return toResponseDTO(restaurante);
     }
 
@@ -128,12 +120,12 @@ public class RestauranteService {
      */
     public RestauranteResponseDTO atualizarRestaurante(Long id, RestauranteDTO dto) {
         Restaurante restaurante = restauranteRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("Restaurante não encontrado: " + id));
+            .orElseThrow(() -> new EntityNotFoundException("Restaurante", id)); // Lança EntityNotFoundException
 
         // Verificar nome único (se mudou e está sendo usado por outro restaurante)
         if (!restaurante.getNome().equals(dto.getNome()) &&
             restauranteRepository.findByNome(dto.getNome()).isPresent()) {
-            throw new IllegalArgumentException("Nome já cadastrado: " + dto.getNome());
+            throw new ConflictException("Nome já cadastrado para outro restaurante: " + dto.getNome(), "nome", dto.getNome()); // Lança ConflictException
         }
 
         // Atualizar campos da entidade com base no DTO
@@ -142,10 +134,8 @@ public class RestauranteService {
         restaurante.setEndereco(dto.getEndereco());
         restaurante.setTelefone(dto.getTelefone());
         restaurante.setTaxaEntrega(dto.getTaxaEntrega());
-
-        // Adicionar estes campos à entidade Restaurante e atualizar aqui
-        // restaurante.setTempoEntrega(dto.getTempoEntrega());
-        // restaurante.setHorarioFuncionamento(dto.getHorarioFuncionamento());
+        restaurante.setTempoEntrega(dto.getTempoEntrega()); // Atualizar tempoEntrega
+        restaurante.setHorarioFuncionamento(dto.getHorarioFuncionamento()); // Atualizar horarioFuncionamento
 
         validarDadosRestaurante(restaurante); // Revalida dados de negócio
 
@@ -158,7 +148,7 @@ public class RestauranteService {
      */
     public RestauranteResponseDTO alterarStatusRestaurante(Long id) {
         Restaurante restaurante = restauranteRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("Restaurante não encontrado: " + id));
+            .orElseThrow(() -> new EntityNotFoundException("Restaurante", id)); // Lança EntityNotFoundException
 
         restaurante.setAtivo(!restaurante.isAtivo()); // Inverte o status
         Restaurante restauranteAtualizado = restauranteRepository.save(restaurante);
@@ -179,34 +169,20 @@ public class RestauranteService {
 
     /**
      * Calcular taxa de entrega
-     * NOTA: A lógica para calcular taxa de entrega baseada em CEP é complexa e
-     * geralmente envolve integração com APIs externas (Correios, ViaCEP, etc.).
-     * Esta é uma implementação simplificada/placeholder.
      */
     @Transactional(readOnly = true)
     public BigDecimal calcularTaxaEntrega(Long id, String cep) {
         Restaurante restaurante = restauranteRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("Restaurante não encontrado: " + id));
+            .orElseThrow(() -> new EntityNotFoundException("Restaurante", id)); // Lança EntityNotFoundException
 
-        // Lógica de cálculo simplificada: apenas retorna a taxa fixa do restaurante
-        // Em um cenário real, você integraria com uma API de CEP/distância.
         return restaurante.getTaxaEntrega();
     }
 
     /**
      * Buscar restaurantes próximos
-     * NOTA: A lógica para buscar restaurantes próximos a um CEP em um determinado raio
-     * exige dados de geolocalização (latitude/longitude) para restaurantes e uma
-     * base de dados de CEPs ou integração com serviços de mapas (Google Maps API, etc.).
-     * Esta é uma implementação simplificada/placeholder.
      */
     @Transactional(readOnly = true)
     public List<RestauranteResponseDTO> buscarRestaurantesProximos(String cep, Integer raio) {
-        // Implementação placeholder: retorna todos os restaurantes ativos, ignorando CEP e raio
-        // Em um cenário real:
-        // 1. Converter CEP para coordenadas geográficas.
-        // 2. Buscar restaurantes com coordenadas e calcular distância.
-        // 3. Filtrar por raio.
         List<Restaurante> restaurantes = restauranteRepository.findByAtivoTrue();
         return restaurantes.stream()
                 .map(this::toResponseDTO)
@@ -218,12 +194,12 @@ public class RestauranteService {
 
     private void validarDadosRestaurante(Restaurante restaurante) {
         if (restaurante.getNome() == null || restaurante.getNome().trim().isEmpty()) {
-            throw new IllegalArgumentException("Nome é obrigatório");
+            throw new BusinessException("Nome é obrigatório", "VALIDATION_ERROR");
         }
 
         if (restaurante.getTaxaEntrega() != null &&
             restaurante.getTaxaEntrega().compareTo(BigDecimal.ZERO) < 0) {
-            throw new IllegalArgumentException("Taxa de entrega não pode ser negativa");
+            throw new BusinessException("Taxa de entrega não pode ser negativa", "VALIDATION_ERROR");
         }
     }
 }

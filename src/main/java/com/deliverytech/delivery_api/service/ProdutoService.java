@@ -4,8 +4,10 @@ import com.deliverytech.delivery_api.entity.Produto;
 import com.deliverytech.delivery_api.entity.Restaurante;
 import com.deliverytech.delivery_api.repository.ProdutoRepository;
 import com.deliverytech.delivery_api.repository.RestauranteRepository;
-import com.deliverytech.delivery_api.dto.ProdutoDTO; // Importe o DTO de requisição
-import com.deliverytech.delivery_api.dto.ProdutoResponseDTO; // Importe o DTO de resposta
+import com.deliverytech.delivery_api.dto.ProdutoDTO;
+import com.deliverytech.delivery_api.dto.ProdutoResponseDTO;
+import com.deliverytech.delivery_api.exception.EntityNotFoundException; // Importar EntityNotFoundException
+import com.deliverytech.delivery_api.exception.BusinessException; // Importar BusinessException (para validações mais genéricas)
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors; // Para mapear listas
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -28,7 +30,6 @@ public class ProdutoService {
 
     // --- Métodos de Mapeamento (Helper Methods) ---
 
-    // Converte Produto (Entidade) para ProdutoResponseDTO
     private ProdutoResponseDTO toResponseDTO(Produto produto) {
         if (produto == null) {
             return null;
@@ -44,7 +45,6 @@ public class ProdutoService {
         );
     }
 
-    // Converte ProdutoDTO para Produto (Entidade)
     private Produto toEntity(ProdutoDTO dto) {
         if (dto == null) {
             return null;
@@ -65,17 +65,16 @@ public class ProdutoService {
      */
     public ProdutoResponseDTO cadastrarProduto(ProdutoDTO dto, Long restauranteId) {
         Restaurante restaurante = restauranteRepository.findById(restauranteId)
-            .orElseThrow(() -> new IllegalArgumentException("Restaurante não encontrado: " + restauranteId));
+            .orElseThrow(() -> new EntityNotFoundException("Restaurante", restauranteId)); // Lança EntityNotFoundException
 
-        // Validações do DTO já feitas pelo @Valid no Controller
-        validarDadosProduto(toEntity(dto)); // Usa a validação de negócio existente
+        validarDadosProduto(toEntity(dto));
 
-        Produto produto = toEntity(dto); // Converte DTO para Entidade
+        Produto produto = toEntity(dto);
         produto.setRestaurante(restaurante);
         produto.setDisponivel(true);
 
         Produto produtoSalvo = produtoRepository.save(produto);
-        return toResponseDTO(produtoSalvo); // Converte Entidade salva para DTO de resposta
+        return toResponseDTO(produtoSalvo);
     }
 
     /**
@@ -84,7 +83,7 @@ public class ProdutoService {
     @Transactional(readOnly = true)
     public ProdutoResponseDTO buscarProdutoPorId(Long id) {
         Produto produto = produtoRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("Produto não encontrado: " + id));
+            .orElseThrow(() -> new EntityNotFoundException("Produto", id)); // Lança EntityNotFoundException
         return toResponseDTO(produto);
     }
 
@@ -93,10 +92,9 @@ public class ProdutoService {
      */
     public ProdutoResponseDTO atualizarProduto(Long id, ProdutoDTO dto) {
         Produto produto = produtoRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("Produto não encontrado: " + id));
+            .orElseThrow(() -> new EntityNotFoundException("Produto", id)); // Lança EntityNotFoundException
 
-        // Validações do DTO já feitas pelo @Valid no Controller
-        validarDadosProduto(toEntity(dto)); // Usa a validação de negócio existente
+        validarDadosProduto(toEntity(dto));
 
         produto.setNome(dto.getNome());
         produto.setDescricao(dto.getDescricao());
@@ -111,11 +109,13 @@ public class ProdutoService {
      * Remover produto
      */
     public void removerProduto(Long id) {
-        if (!produtoRepository.existsById(id)) {
-            throw new IllegalArgumentException("Produto não encontrado: " + id);
-        }
+        Produto produto = produtoRepository.findById(id) // Busca o produto para verificar existência
+            .orElseThrow(() -> new EntityNotFoundException("Produto", id)); // Lança EntityNotFoundException
+
         // TODO: Adicionar lógica para verificar se o produto tem pedidos associados antes de remover (ATIVIDADE 4 - Cenários de Conflito)
         // Isso exigiria uma verificação no ItemPedidoRepository ou PedidoRepository.
+        // Exemplo: if (itemPedidoRepository.existsByProdutoId(id)) { throw new ConflictException("Produto possui pedidos associados"); }
+
         produtoRepository.deleteById(id);
     }
 
@@ -124,9 +124,9 @@ public class ProdutoService {
      */
     public ProdutoResponseDTO alterarDisponibilidadeProduto(Long id) {
         Produto produto = produtoRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("Produto não encontrado: " + id));
+            .orElseThrow(() -> new EntityNotFoundException("Produto", id)); // Lança EntityNotFoundException
 
-        produto.setDisponivel(!produto.isDisponivel()); // Inverte o status de disponibilidade
+        produto.setDisponivel(!produto.isDisponivel());
         Produto produtoAtualizado = produtoRepository.save(produto);
         return toResponseDTO(produtoAtualizado);
     }
@@ -137,19 +137,17 @@ public class ProdutoService {
     @Transactional(readOnly = true)
     public List<ProdutoResponseDTO> buscarProdutosPorRestaurante(Long restauranteId, Boolean disponivel) {
         Restaurante restaurante = restauranteRepository.findById(restauranteId)
-                .orElseThrow(() -> new IllegalArgumentException("Restaurante não encontrado: " + restauranteId));
+                .orElseThrow(() -> new EntityNotFoundException("Restaurante", restauranteId)); // Lança EntityNotFoundException
 
         List<Produto> produtos;
         if (disponivel != null) {
-            // Se o filtro de disponibilidade for fornecido
             if (disponivel) {
                 produtos = produtoRepository.findByRestauranteIdAndDisponivelTrue(restauranteId);
             } else {
-                produtos = produtoRepository.findByRestauranteIdAndDisponivelFalse(restauranteId); // Você pode precisar adicionar este método no ProdutoRepository
+                produtos = produtoRepository.findByRestauranteIdAndDisponivelFalse(restauranteId);
             }
         } else {
-            // Se nenhum filtro de disponibilidade, retorna todos os produtos do restaurante
-            produtos = produtoRepository.findByRestauranteId(restauranteId); // Você pode precisar adicionar este método no ProdutoRepository
+            produtos = produtoRepository.findByRestauranteId(restauranteId);
         }
 
         return produtos.stream()
@@ -179,16 +177,15 @@ public class ProdutoService {
                 .collect(Collectors.toList());
     }
 
-
-    // --- Métodos Privados de Validação (Inalterados) ---
+    // --- Métodos Privados de Validação (Inalterados, agora lançando BusinessException) ---
 
     private void validarDadosProduto(Produto produto) {
         if (produto.getNome() == null || produto.getNome().trim().isEmpty()) {
-            throw new IllegalArgumentException("Nome é obrigatório");
+            throw new BusinessException("Nome do produto é obrigatório", "VALIDATION_ERROR");
         }
 
         if (produto.getPreco() == null || produto.getPreco().compareTo(BigDecimal.ZERO) <= 0) {
-            throw new IllegalArgumentException("Preço deve ser maior que zero");
+            throw new BusinessException("Preço do produto deve ser maior que zero", "VALIDATION_ERROR");
         }
     }
 }

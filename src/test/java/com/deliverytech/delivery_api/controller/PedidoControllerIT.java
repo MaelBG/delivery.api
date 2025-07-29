@@ -56,7 +56,7 @@ class PedidoControllerIT {
     private PedidoDTO pedidoDTO; // DTO para criar pedidos
     private PedidoDTO pedidoSalvoDTO; // DTO para referenciar um pedido já salvo
 
-    @BeforeEach
+@BeforeEach
     void setup() {
         pedidoRepository.deleteAll();
         produtoRepository.deleteAll();
@@ -100,12 +100,16 @@ class PedidoControllerIT {
         produtoTeste2 = produtoRepository.save(produtoTeste2);
 
         // Criar um PedidoDTO para os testes
-        ItemPedidoDTO item1 = new ItemPedidoDTO(produtoTeste1.getId(), 1);
-        ItemPedidoDTO item2 = new ItemPedidoDTO(produtoTeste2.getId(), 2);
+        // ItemPedidoDTO agora espera (produtoId, quantidade, observacoes)
+        ItemPedidoDTO item1 = new ItemPedidoDTO(produtoTeste1.getId(), 1, null); // Adicionei 'null' para observacoes
+        ItemPedidoDTO item2 = new ItemPedidoDTO(produtoTeste2.getId(), 2, "Sem cebola"); // Adicionei "Sem cebola" para observacoes
         List<ItemPedidoDTO> itens = Arrays.asList(item1, item2);
 
+        // PedidoDTO agora espera (clienteId, restauranteId, enderecoEntrega, observacoesPedido, cep, formaPagamento, itens)
         pedidoDTO = new PedidoDTO(clienteTeste.getId(), restauranteTeste.getId(),
-                clienteTeste.getEndereco(), "Observações de teste", itens);
+                clienteTeste.getEndereco(), "Observações de teste",
+                "12345-678", "CARTAO_CREDITO", // Adicionado CEP e Forma de Pagamento
+                itens);
     }
 
     @Test

@@ -1,11 +1,11 @@
 package com.deliverytech.delivery_api.entity;
- 
+
 import jakarta.persistence.*;
 import lombok.Data;
 import java.math.BigDecimal;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
- 
+
 @Entity
 @Data
 public class Restaurante {
@@ -24,11 +24,11 @@ public class Restaurante {
     private Integer tempoEntrega; // Campo para tempo estimado de entrega
     private String horarioFuncionamento; // Campo para horário de funcionamento
     // --- FIM DOS NOVOS CAMPOS ---
- 
+
     @JsonIgnore
     @OneToMany(mappedBy = "restaurante")
     private List<Produto> produtos;
- 
+
     @JsonIgnore
     @OneToMany(mappedBy = "restaurante")
     private List<Pedido> pedidos;
