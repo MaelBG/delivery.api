@@ -1,7 +1,6 @@
 package com.deliverytech.delivery_api.controller;
 
 import com.deliverytech.delivery_api.dto.ApiResponseWrapper;
-import com.deliverytech.delivery_api.dto.PagedResponseWrapper;
 import com.deliverytech.delivery_api.dto.ProdutoDTO;
 import com.deliverytech.delivery_api.dto.ProdutoResponseDTO;
 import com.deliverytech.delivery_api.service.ProdutoService;
@@ -10,19 +9,17 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/produtos") // O roteiro usa /api/produtos
+@RequestMapping("/api/produtos")
 @CrossOrigin(origins = "*")
 @Tag(name = "Produtos", description = "Operações relacionadas aos produtos")
 public class ProdutoController {
@@ -30,10 +27,8 @@ public class ProdutoController {
     @Autowired
     private ProdutoService produtoService;
 
-    /**
-     * Cadastrar novo produto
-     */
     @PostMapping
+    @PreAuthorize("hasRole('RESTAURANTE') or hasRole('ADMIN')")
     @Operation(summary = "Cadastrar produto", description = "Cria um novo produto no sistema")
     @ApiResponses({
         @ApiResponse(responseCode = "201", description = "Produto criado com sucesso"),
@@ -41,7 +36,7 @@ public class ProdutoController {
         @ApiResponse(responseCode = "404", description = "Restaurante não encontrado")
     })
     public ResponseEntity<ApiResponseWrapper<ProdutoResponseDTO>> cadastrar(
-            @Valid @RequestBody(description = "Dados do produto a ser criado") ProdutoDTO dto,
+            @Valid @RequestBody ProdutoDTO dto,
             @Parameter(description = "ID do restaurante ao qual o produto pertence") @RequestParam Long restauranteId) {
         ProdutoResponseDTO produto = produtoService.cadastrarProduto(dto, restauranteId);
         ApiResponseWrapper<ProdutoResponseDTO> response =
@@ -49,9 +44,6 @@ public class ProdutoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    /**
-     * Buscar produto por ID
-     */
     @GetMapping("/{id}")
     @Operation(summary = "Buscar produto por ID", description = "Recupera um produto específico pelo ID")
     @ApiResponses({
@@ -66,10 +58,8 @@ public class ProdutoController {
         return ResponseEntity.ok(response);
     }
 
-    /**
-     * Atualizar produto
-     */
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN') or @produtoService.isOwner(#id)")
     @Operation(summary = "Atualizar produto", description = "Atualiza os dados de um produto existente")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Produto atualizado com sucesso"),
@@ -85,10 +75,8 @@ public class ProdutoController {
         return ResponseEntity.ok(response);
     }
 
-    /**
-     * Remover produto
-     */
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN') or @produtoService.isOwner(#id)")
     @Operation(summary = "Remover produto", description = "Remove um produto do sistema")
     @ApiResponses({
         @ApiResponse(responseCode = "204", description = "Produto removido com sucesso"),
@@ -101,10 +89,8 @@ public class ProdutoController {
         return ResponseEntity.noContent().build();
     }
 
-    /**
-     * Alterar disponibilidade
-     */
     @PatchMapping("/{id}/disponibilidade")
+    @PreAuthorize("hasRole('ADMIN') or @produtoService.isOwner(#id)")
     @Operation(summary = "Alterar disponibilidade", description = "Alterna a disponibilidade do produto")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Disponibilidade alterada com sucesso"),
@@ -118,11 +104,7 @@ public class ProdutoController {
         return ResponseEntity.ok(response);
     }
 
-    /**
-     * Listar produtos de um restaurante (Este endpoint está listado em RestauranteController no roteiro,
-     * mas a lógica de produto pertence ao ProdutoService).
-     */
-    @GetMapping("/restaurantes/{restauranteId}/produtos") // Mapeamento como no roteiro
+    @GetMapping("/restaurantes/{restauranteId}/produtos")
     @Operation(summary = "Produtos do restaurante", description = "Lista todos os produtos de um restaurante")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Produtos encontrados"),
@@ -131,16 +113,12 @@ public class ProdutoController {
     public ResponseEntity<ApiResponseWrapper<List<ProdutoResponseDTO>>> buscarProdutosDoRestaurante(
             @Parameter(description = "ID do restaurante") @PathVariable Long restauranteId,
             @Parameter(description = "Filtrar apenas disponíveis") @RequestParam(required = false) Boolean disponivel) {
-        // Agora, o ProdutoService.buscarProdutosPorRestaurante está pronto para ser chamado.
         List<ProdutoResponseDTO> produtos = produtoService.buscarProdutosPorRestaurante(restauranteId, disponivel);
         ApiResponseWrapper<List<ProdutoResponseDTO>> response =
                 new ApiResponseWrapper<>(true, produtos, "Produtos encontrados");
         return ResponseEntity.ok(response);
     }
 
-    /**
-     * Buscar produtos por categoria
-     */
     @GetMapping("/categoria/{categoria}")
     @Operation(summary = "Buscar por categoria", description = "Lista produtos de uma categoria específica")
     @ApiResponses({
@@ -154,9 +132,6 @@ public class ProdutoController {
         return ResponseEntity.ok(response);
     }
 
-    /**
-     * Buscar produtos por nome
-     */
     @GetMapping("/buscar")
     @Operation(summary = "Buscar por nome", description = "Busca produtos pelo nome")
     @ApiResponses({

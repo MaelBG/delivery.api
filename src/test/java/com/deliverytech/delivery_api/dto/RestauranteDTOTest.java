@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.util.Set;
+import java.util.List; // Adicione esta linha
+import java.util.stream.Collectors; // Adicione esta linha
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -39,22 +41,27 @@ public class RestauranteDTOTest {
         assertTrue(violations.isEmpty(), "Não deveria haver violações para dados válidos");
     }
 
-    @Test
-    void naoDeveValidarRestauranteDTOComNomeVazio() {
-        RestauranteDTO dto = new RestauranteDTO(
-                "", // Nome vazio
-                "ITALIANA",
-                "Rua A, 123",
-                "11987654321",
-                new BigDecimal("8.50"),
-                30,
-                "09:00-23:00",
-                "contato@pizzamania.com"
-        );
-        Set<ConstraintViolation<RestauranteDTO>> violations = validator.validate(dto);
-        assertEquals(1, violations.size(), "Deve haver 1 violação");
-        assertEquals("Nome é obrigatório", violations.iterator().next().getMessage());
-    }
+@Test
+void naoDeveValidarRestauranteDTOComNomeVazio() {
+    RestauranteDTO dto = new RestauranteDTO(
+            "", // Nome vazio
+            "ITALIANA",
+            "Rua A, 123",
+            "11987654321",
+            new BigDecimal("8.50"),
+            30,
+            "09:00-23:00",
+            "contato@pizzamania.com"
+    );
+    Set<ConstraintViolation<RestauranteDTO>> violations = validator.validate(dto);
+    // Corrigido para esperar 2 violações
+    assertEquals(2, violations.size(), "Deve haver 2 violações para nome vazio/curto");
+
+    // Opcional: Verifique se as mensagens corretas estão presentes
+    List<String> messages = violations.stream().map(ConstraintViolation::getMessage).collect(Collectors.toList());
+    assertTrue(messages.contains("Nome é obrigatório"));
+    assertTrue(messages.contains("Nome deve ter entre 2 e 100 caracteres"));
+}
 
     @Test
     void naoDeveValidarRestauranteDTOComTelefoneInvalido() {

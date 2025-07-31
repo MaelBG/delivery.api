@@ -6,6 +6,7 @@ import com.deliverytech.delivery_api.repository.projections.RelatorioVendas; // 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Profile; // Importe esta anotação
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
+@Profile("!test") // Adicione esta linha para desabilitar no perfil de teste
 public class DataLoader implements CommandLineRunner {
 
     @Autowired

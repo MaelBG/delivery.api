@@ -4,14 +4,13 @@ import com.deliverytech.delivery_api.dto.ApiResponseWrapper;
 import com.deliverytech.delivery_api.dto.PagedResponseWrapper;
 import com.deliverytech.delivery_api.dto.RestauranteDTO;
 import com.deliverytech.delivery_api.dto.RestauranteResponseDTO;
-import com.deliverytech.delivery_api.dto.ProdutoResponseDTO; // Adicione esta linha
+import com.deliverytech.delivery_api.dto.ProdutoResponseDTO;
 import com.deliverytech.delivery_api.service.RestauranteService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-//import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,12 +18,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/restaurantes") // O roteiro usa /api/restaurantes
+@RequestMapping("/api/restaurantes")
 @CrossOrigin(origins = "*")
 @Tag(name = "Restaurantes", description = "Operações relacionadas aos restaurantes")
 public class RestauranteController {
@@ -32,30 +32,22 @@ public class RestauranteController {
     @Autowired
     private RestauranteService restauranteService;
 
-    /**
-     * Cadastrar novo restaurante
-     */
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Cadastrar restaurante", description = "Cria um novo restaurante no sistema")
     @ApiResponses({
         @ApiResponse(responseCode = "201", description = "Restaurante criado com sucesso"),
         @ApiResponse(responseCode = "400", description = "Dados inválidos"),
         @ApiResponse(responseCode = "409", description = "Restaurante já existe")
     })
-        public ResponseEntity<ApiResponseWrapper<RestauranteResponseDTO>> cadastrar(
-        @Valid @org.springframework.web.bind.annotation.RequestBody // Use a do Spring para binding
-        @io.swagger.v3.oas.annotations.parameters.RequestBody( // Use a do Swagger para documentação
-            description = "Dados do restaurante a ser criado"
-        ) RestauranteDTO dto) {
+    public ResponseEntity<ApiResponseWrapper<RestauranteResponseDTO>> cadastrar(
+        @Valid @RequestBody RestauranteDTO dto) {
         RestauranteResponseDTO restaurante = restauranteService.cadastrarRestaurante(dto);
         ApiResponseWrapper<RestauranteResponseDTO> response =
                 new ApiResponseWrapper<>(true, restaurante, "Restaurante criado com sucesso");
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    /**
-     * Listar restaurantes com filtros e paginação
-     */
     @GetMapping
     @Operation(summary = "Listar restaurantes", description = "Lista restaurantes com filtros opcionais e paginação")
     @ApiResponses({
@@ -72,9 +64,6 @@ public class RestauranteController {
         return ResponseEntity.ok(response);
     }
 
-    /**
-     * Buscar restaurante por ID
-     */
     @GetMapping("/{id}")
     @Operation(summary = "Buscar restaurante por ID", description = "Recupera um restaurante específico pelo ID")
     @ApiResponses({
@@ -89,10 +78,8 @@ public class RestauranteController {
         return ResponseEntity.ok(response);
     }
 
-    /**
-     * Atualizar restaurante
-     */
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN') or (hasRole('RESTAURANTE') and @restauranteService.isOwner(#id))")
     @Operation(summary = "Atualizar restaurante", description = "Atualiza os dados de um restaurante existente")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Restaurante atualizado com sucesso"),
@@ -108,10 +95,8 @@ public class RestauranteController {
         return ResponseEntity.ok(response);
     }
 
-    /**
-     * Ativar/Desativar restaurante
-     */
     @PatchMapping("/{id}/status")
+    @PreAuthorize("hasRole('ADMIN') or (hasRole('RESTAURANTE') and @restauranteService.isOwner(#id))")
     @Operation(summary = "Ativar/Desativar restaurante", description = "Alterna o status ativo/inativo do restaurante")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Status alterado com sucesso"),
@@ -125,9 +110,6 @@ public class RestauranteController {
         return ResponseEntity.ok(response);
     }
 
-    /**
-     * Buscar restaurantes por categoria
-     */
     @GetMapping("/categoria/{categoria}")
     @Operation(summary = "Buscar por categoria", description = "Lista restaurantes de uma categoria específica")
     @ApiResponses({
@@ -142,9 +124,6 @@ public class RestauranteController {
         return ResponseEntity.ok(response);
     }
 
-    /**
-     * Calcular taxa de entrega
-     */
     @GetMapping("/{id}/taxa-entrega/{cep}")
     @Operation(summary = "Calcular taxa de entrega", description = "Calcula a taxa de entrega para um CEP específico")
     @ApiResponses({
@@ -160,9 +139,6 @@ public class RestauranteController {
         return ResponseEntity.ok(response);
     }
 
-    /**
-     * Listar restaurantes próximos
-     */
     @GetMapping("/proximos/{cep}")
     @Operation(summary = "Restaurantes próximos", description = "Lista restaurantes próximos a um CEP")
     @ApiResponses({
@@ -178,10 +154,6 @@ public class RestauranteController {
         return ResponseEntity.ok(response);
     }
 
-    /**
-     * Listar produtos de um restaurante (Este endpoint está listado em RestauranteController no roteiro,
-     * mas a lógica de produto pertence ao ProdutoService).
-     */
     @GetMapping("/{restauranteId}/produtos")
     @Operation(summary = "Produtos do restaurante", description = "Lista todos os produtos de um restaurante")
     @ApiResponses({
@@ -191,16 +163,6 @@ public class RestauranteController {
     public ResponseEntity<ApiResponseWrapper<List<ProdutoResponseDTO>>> buscarProdutosDoRestaurante(
             @Parameter(description = "ID do restaurante") @PathVariable Long restauranteId,
             @Parameter(description = "Filtrar apenas disponíveis") @RequestParam(required = false) Boolean disponivel) {
-        // O roteiro indica que o produtoService.buscarProdutosPorRestaurante deve ser chamado.
-        // Assumimos que o ProdutoService será injetado e este método existirá nele.
-        // No momento, ProdutoService não está injetado aqui.
-        // Para uma arquitetura limpa, este endpoint seria idealmente no ProdutoController.
-        // Se mantido aqui, ProdutoService precisaria ser @Autowired.
-        // List<ProdutoResponseDTO> produtos = produtoService.buscarProdutosPorRestaurante(restauranteId, disponivel);
-        // ApiResponseWrapper<List<ProdutoResponseDTO>> response = new ApiResponseWrapper<>(true, produtos, "Produtos encontrados");
-        // return ResponseEntity.ok(response);
-        
-        // Retorno de erro até que a injeção de ProdutoService seja feita ou o endpoint seja movido.
         return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(ApiResponseWrapper.error("Este endpoint deve ser movido para ProdutoController ou ProdutoService deve ser injetado aqui."));
     }
 }

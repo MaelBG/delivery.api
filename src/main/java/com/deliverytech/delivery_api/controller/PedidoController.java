@@ -14,7 +14,6 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,14 +22,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/pedidos") // O roteiro usa /api/pedidos
+@RequestMapping("/api/pedidos")
 @CrossOrigin(origins = "*")
 @Tag(name = "Pedidos", description = "Operações relacionadas aos pedidos")
 public class PedidoController {
@@ -38,10 +37,8 @@ public class PedidoController {
     @Autowired
     private PedidoService pedidoService;
 
-    /**
-     * Criar novo pedido
-     */
     @PostMapping
+    @PreAuthorize("hasRole('CLIENTE')")
     @Operation(summary = "Criar pedido", description = "Cria um novo pedido no sistema")
     @ApiResponses({
         @ApiResponse(responseCode = "201", description = "Pedido criado com sucesso"),
@@ -50,17 +47,15 @@ public class PedidoController {
         @ApiResponse(responseCode = "409", description = "Produto indisponível")
     })
     public ResponseEntity<ApiResponseWrapper<PedidoResponseDTO>> criarPedido(
-            @Valid @RequestBody(description = "Dados do pedido a ser criado") PedidoDTO dto) {
+            @Valid @RequestBody PedidoDTO dto) {
         PedidoResponseDTO pedido = pedidoService.criarPedido(dto);
         ApiResponseWrapper<PedidoResponseDTO> response =
                 new ApiResponseWrapper<>(true, pedido, "Pedido criado com sucesso");
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    /**
-     * Adicionar item ao pedido
-     */
     @PostMapping("/{pedidoId}/itens")
+    @PreAuthorize("hasRole('CLIENTE') or hasRole('ADMIN')")
     @Operation(summary = "Adicionar item ao pedido", description = "Adiciona um produto a um pedido existente.")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Item adicionado com sucesso."),
@@ -77,10 +72,8 @@ public class PedidoController {
         return ResponseEntity.ok(response);
     }
 
-    /**
-     * Confirmar pedido
-     */
     @PutMapping("/{pedidoId}/confirmar")
+    @PreAuthorize("hasRole('CLIENTE') or hasRole('ADMIN')")
     @Operation(summary = "Confirmar pedido", description = "Confirma um pedido pendente.")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Pedido confirmado com sucesso."),
@@ -95,10 +88,6 @@ public class PedidoController {
         return ResponseEntity.ok(response);
     }
 
-
-    /**
-     * Buscar pedido por ID
-     */
     @GetMapping("/{id}")
     @Operation(summary = "Buscar pedido por ID", description = "Recupera um pedido específico com todos os detalhes.")
     @ApiResponses({
@@ -113,10 +102,8 @@ public class PedidoController {
         return ResponseEntity.ok(response);
     }
 
-    /**
-     * Listar pedidos com filtros (status, data) e paginação
-     */
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Listar pedidos", description = "Lista pedidos com filtros opcionais (status, data inicial e data final) e paginação.")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Lista recuperada com sucesso.")
@@ -132,16 +119,12 @@ public class PedidoController {
         LocalDateTime inicio = (dataInicio != null) ? dataInicio.atStartOfDay() : null;
         LocalDateTime fim = (dataFim != null) ? dataFim.atTime(23, 59, 59, 999999999) : null;
 
-        // CORREÇÃO AQUI: Passando 'pageable' para o service e esperando um 'Page' de retorno
         Page<PedidoResponseDTO> pedidos = pedidoService.listarPedidos(status, inicio, fim, pageable);
         PagedResponseWrapper<PedidoResponseDTO> response =
                 new PagedResponseWrapper<>(pedidos);
         return ResponseEntity.ok(response);
     }
 
-    /**
-     * Buscar pedido por número
-     */
     @GetMapping("/numero/{numeroPedido}")
     @Operation(summary = "Buscar pedido por número", description = "Recupera um pedido específico pelo número do pedido.")
     @ApiResponses({
@@ -156,10 +139,8 @@ public class PedidoController {
         return ResponseEntity.ok(response);
     }
 
-    /**
-     * Atualizar status do pedido
-     */
     @PatchMapping("/{id}/status")
+    @PreAuthorize("hasRole('RESTAURANTE') or hasRole('ADMIN')")
     @Operation(summary = "Atualizar status do pedido", description = "Atualiza o status de um pedido, respeitando as transições válidas.")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Status atualizado com sucesso."),
@@ -175,10 +156,8 @@ public class PedidoController {
         return ResponseEntity.ok(response);
     }
 
-    /**
-     * Cancelar pedido
-     */
-    @DeleteMapping("/{id}") // O roteiro usa DELETE
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('CLIENTE') or hasRole('ADMIN')")
     @Operation(summary = "Cancelar pedido", description = "Cancela um pedido se possível (não pode ser cancelado se já entregue).")
     @ApiResponses({
         @ApiResponse(responseCode = "204", description = "Pedido cancelado com sucesso"),
@@ -187,16 +166,13 @@ public class PedidoController {
     })
     public ResponseEntity<Void> cancelarPedido(
             @Parameter(description = "ID do pedido a ser cancelado.") @PathVariable Long id,
-            @Parameter(description = "Motivo do cancelamento (opcional).") @RequestParam(required = false) String motivo) { // ADICIONADO: @RequestParam para 'motivo'
-        // CORREÇÃO AQUI: Passando 'motivo' para o service
+            @Parameter(description = "Motivo do cancelamento (opcional).") @RequestParam(required = false) String motivo) {
         pedidoService.cancelarPedido(id, motivo);
         return ResponseEntity.noContent().build();
     }
 
-    /**
-     * Histórico do cliente / Listar pedidos por cliente
-     */
     @GetMapping("/cliente/{clienteId}")
+    @PreAuthorize("hasRole('ADMIN') or (hasRole('CLIENTE') and @pedidoService.canAccess(#clienteId, 'CLIENTE'))")
     @Operation(summary = "Histórico do cliente", description = "Lista todos os pedidos de um cliente específico.")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Histórico recuperado com sucesso."),
@@ -210,10 +186,8 @@ public class PedidoController {
         return ResponseEntity.ok(response);
     }
 
-    /**
-     * Pedidos do restaurante / Listar pedidos por restaurante
-     */
     @GetMapping("/restaurante/{restauranteId}")
+    @PreAuthorize("hasRole('ADMIN') or (hasRole('RESTAURANTE') and @pedidoService.canAccess(#restauranteId, 'RESTAURANTE'))")
     @Operation(summary = "Pedidos do restaurante", description = "Lista todos os pedidos de um restaurante, com filtro de status opcional.")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Pedidos recuperados com sucesso."),
@@ -228,9 +202,6 @@ public class PedidoController {
         return ResponseEntity.ok(response);
     }
 
-    /**
-     * Calcular total do pedido (sem salvar)
-     */
     @PostMapping("/calcular")
     @Operation(summary = "Calcular total do pedido", description = "Calcula o total de um pedido com base nos itens fornecidos, sem salvá-lo.")
     @ApiResponses({
@@ -239,7 +210,7 @@ public class PedidoController {
         @ApiResponse(responseCode = "404", description = "Produto ou restaurante não encontrado.")
     })
     public ResponseEntity<ApiResponseWrapper<CalculoPedidoResponseDTO>> calcularTotal(
-            @Valid @RequestBody(description = "Itens e restaurante para cálculo do total.") CalculoPedidoDTO dto) {
+            @Valid @RequestBody CalculoPedidoDTO dto) {
         CalculoPedidoResponseDTO calculo = pedidoService.calcularTotalPedido(dto);
         ApiResponseWrapper<CalculoPedidoResponseDTO> response =
                 new ApiResponseWrapper<>(true, calculo, "Total calculado com sucesso");

@@ -6,6 +6,7 @@ import com.deliverytech.delivery_api.exception.EntityNotFoundException; // Impor
 import com.deliverytech.delivery_api.exception.ConflictException; // Importar ConflictException
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authorization.AuthorizationDeniedException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -61,6 +62,21 @@ public class RestExceptionHandler {
         ErrorResponse errorResponse = new ErrorResponse(ex.getErrorCode() != null ? ex.getErrorCode() : "BUSINESS_ERROR",
                 ex.getMessage(), ex.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    // --- CÓDIGO A SER ADICIONADO ---
+    /**
+     * Manipula exceções de acesso negado (erro 403 Forbidden)
+     */
+    @ExceptionHandler(AuthorizationDeniedException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ResponseEntity<ErrorResponse> handleAuthorizationDeniedException(AuthorizationDeniedException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(
+                "ACCESS_DENIED",
+                "Acesso negado. Você não tem permissão para executar esta ação.",
+                ex.getMessage()
+        );
+        return new ResponseEntity<>(errorResponse, HttpStatus.FORBIDDEN);
     }
 
     // Manipulador genérico para outras exceções não tratadas (erro 500) [cite: 653, 675]
