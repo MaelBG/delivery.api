@@ -121,6 +121,50 @@ com.deliverytech.delivery_api
 ├── security/       # Classes relacionadas à segurança com JWT
 ├── service/        # Lógica de negócio da aplicação
 └── validation/     # Validadores customizados
+
+---
+
+## 🧪 Testes Automatizados
+
+O projeto possui uma suíte completa de testes unitários e de integração para garantir a qualidade e a estabilidade do código. A cobertura de código é validada pela ferramenta JaCoCo e configurada para exigir um mínimo de 80% de cobertura de linha nas classes de negócio.
+
+### Como Executar os Testes
+
+**Pré-requisitos:**
+* Java 21 ou superior
+* Maven
+
+**Comandos:**
+
+1.  **Executar todos os testes e verificar a cobertura (Comando Principal):**
+    * Este comando limpa o projeto, compila, executa todos os testes e, ao final, verifica se a meta de cobertura de 80% foi atingida. O build falhará se a meta não for alcançada.
+    ```bash
+    # No Windows
+    mvnw.cmd clean verify
+
+    # No Linux ou macOS
+    ./mvnw clean verify
+    ```
+    * Após a execução bem-sucedida, o resultado será **"BUILD SUCCESS"**.
+
+2.  **Gerar Apenas o Relatório de Cobertura:**
+    * Se desejar apenas gerar o relatório HTML sem executar a verificação que pode falhar o build, use:
+    ```bash
+    # No Windows
+    mvnw.cmd clean test jacoco:report
+
+    # No Linux ou macOS
+    ./mvnw clean test jacoco:report
+    ```
+    * O relatório interativo estará disponível em `target/site/jacoco/index.html`.
+
+### Estratégia de Testes Adotada
+
+-   **Testes Unitários:** Focados na **camada de serviço (`service`)**, utilizando JUnit 5 e Mockito. O objetivo é testar a lógica de negócio de forma isolada e rápida, simulando o comportamento da camada de repositório para evitar a necessidade de um banco de dados real.
+-   **Testes de Integração:** Focados na **camada de controller**, utilizando `@SpringBootTest` e `MockMvc`. Estes testes validam o fluxo completo, desde a requisição HTTP até a resposta, incluindo a integração com a camada de segurança (`Spring Security`), validações de DTOs e a persistência real no banco de dados em memória (H2).
+-   **Qualidade de Código (Quality Gate):** O projeto está configurado com um "portão de qualidade" via JaCoCo. Qualquer tentativa de construir o projeto (build) falhará se a cobertura de linha das classes de negócio for inferior a 80%, garantindo que novas funcionalidades sejam sempre acompanhadas de testes adequados.
+
+
 Desenvolvido com ❤️ por 
 
 Ismael Barbosa Galdino Filho.
