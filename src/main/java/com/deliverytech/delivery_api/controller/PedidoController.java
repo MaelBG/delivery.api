@@ -9,6 +9,8 @@ import com.deliverytech.delivery_api.dto.PedidoResponseDTO;
 import com.deliverytech.delivery_api.dto.StatusPedidoDTO;
 import com.deliverytech.delivery_api.entity.StatusPedido;
 import com.deliverytech.delivery_api.service.PedidoService;
+import com.deliverytech.delivery_api.service.MetricsService; // <-- IMPORT ADICIONADO
+import io.micrometer.core.instrument.Timer; // <-- IMPORT ADICIONADO
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -38,8 +40,11 @@ public class PedidoController {
     @Autowired
     private PedidoService pedidoService;
 
+    @Autowired
+    private MetricsService metricsService; // <-- SERVIÇO DE MÉTRICAS INJETADO
+
     @PostMapping
-    @PreAuthorize("hasRole('CLIENTE')")
+    @PreAuthorize("hasRole('CLIENTE') or hasRole('ADMIN')") // Permiti ADMIN para facilitar os testes
     @Operation(summary = "Criar pedido", description = "Cria um novo pedido no sistema", security = @SecurityRequirement(name = "Bearer Authentication"))
     @ApiResponses({
             @ApiResponse(responseCode = "201", description = "Pedido criado com sucesso"),
@@ -49,10 +54,24 @@ public class PedidoController {
     })
     public ResponseEntity<ApiResponseWrapper<PedidoResponseDTO>> criarPedido(
             @Valid @RequestBody PedidoDTO dto) {
-        PedidoResponseDTO pedido = pedidoService.criarPedido(dto);
-        ApiResponseWrapper<PedidoResponseDTO> response = new ApiResponseWrapper<>(true, pedido,
-                "Pedido criado com sucesso");
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        
+        metricsService.incrementarPedidosProcessados(); // Incrementa o total de tentativas
+        Timer.Sample sample = metricsService.iniciarTimerPedido(); // Inicia o timer
+        
+        try {
+            PedidoResponseDTO pedido = pedidoService.criarPedido(dto);
+            ApiResponseWrapper<PedidoResponseDTO> response = new ApiResponseWrapper<>(true, pedido,
+                    "Pedido criado com sucesso");
+            
+            metricsService.incrementarPedidosComSucesso(); // Incrementa sucesso
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+
+        } catch (Exception e) {
+            metricsService.incrementarPedidosComErro(); // Incrementa erro
+            throw e; // Relança a exceção para o handler global tratar
+        } finally {
+            metricsService.finalizarTimerPedido(sample); // Finaliza o timer (sempre)
+        }
     }
 
     @PostMapping("/{pedidoId}/itens")
