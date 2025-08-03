@@ -9053,3 +9053,1648 @@ java.util.NoSuchElementException: No value present
 2025-08-02 19:58:24.771 [http-nio-8080-exec-7] DEBUG [aa1fcf35-d749-450c-b4aa-55cd8583f86d] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Found 'Content-Type:application/openmetrics-text;version=1.0.0;charset=utf-8' in response
 2025-08-02 19:58:24.774 [http-nio-8080-exec-7] DEBUG [aa1fcf35-d749-450c-b4aa-55cd8583f86d] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [{35, 32, 84, 89, 80, 69, 32, 97, 112, 112, 108, 105, 99, 97, 116, 105, 111, 110, 95, 114, 101, 97, 1 (truncated)...]
 2025-08-02 19:58:24.775 [http-nio-8080-exec-7] DEBUG [aa1fcf35-d749-450c-b4aa-55cd8583f86d] o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-08-02 21:45:59.877 [background-preinit] INFO  [] o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2025-08-02 21:46:00.031 [restartedMain] INFO  [] c.d.delivery_api.Application - Starting Application using Java 21.0.7 with PID 23892 (C:\Users\ismae\OneDrive\Área de Trabalho\Fat\delivery.api\target\classes started by ismae in c:\Users\ismae\OneDrive\Área de Trabalho\Fat\delivery.api)
+2025-08-02 21:46:00.032 [restartedMain] DEBUG [] c.d.delivery_api.Application - Running with Spring Boot v3.3.1, Spring v6.1.10
+2025-08-02 21:46:00.033 [restartedMain] INFO  [] c.d.delivery_api.Application - No active profile set, falling back to 1 default profile: "default"
+2025-08-02 21:46:00.109 [restartedMain] INFO  [] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-08-02 21:46:00.109 [restartedMain] INFO  [] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-08-02 21:46:02.532 [restartedMain] INFO  [] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-02 21:46:02.677 [restartedMain] INFO  [] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 130 ms. Found 5 JPA repository interfaces.
+2025-08-02 21:46:04.345 [restartedMain] INFO  [] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-08-02 21:46:04.366 [restartedMain] INFO  [] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-08-02 21:46:04.371 [restartedMain] INFO  [] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-02 21:46:04.372 [restartedMain] INFO  [] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.25]
+2025-08-02 21:46:04.501 [restartedMain] INFO  [] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-08-02 21:46:04.503 [restartedMain] INFO  [] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4391 ms
+2025-08-02 21:46:04.871 [restartedMain] INFO  [] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-02 21:46:05.107 [restartedMain] INFO  [] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:delivery user=SA
+2025-08-02 21:46:05.113 [restartedMain] INFO  [] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-02 21:46:05.130 [restartedMain] INFO  [] o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:delivery'
+2025-08-02 21:46:05.710 [restartedMain] INFO  [] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-02 21:46:05.821 [restartedMain] INFO  [] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2025-08-02 21:46:05.943 [restartedMain] INFO  [] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-08-02 21:46:06.487 [restartedMain] INFO  [] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-02 21:46:06.586 [restartedMain] WARN  [] org.hibernate.orm.deprecation - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-02 21:46:08.224 [restartedMain] INFO  [] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-02 21:46:08.243 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    drop table if exists cliente cascade 
+2025-08-02 21:46:08.247 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    drop table if exists item_pedido cascade 
+2025-08-02 21:46:08.247 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    drop table if exists pedido cascade 
+2025-08-02 21:46:08.248 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    drop table if exists produto cascade 
+2025-08-02 21:46:08.248 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    drop table if exists restaurante cascade 
+2025-08-02 21:46:08.249 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    drop table if exists usuario cascade 
+2025-08-02 21:46:08.254 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    create table cliente (
+        ativo boolean not null,
+        data_cadastro timestamp(6),
+        id bigint generated by default as identity,
+        email varchar(255),
+        endereco varchar(255),
+        nome varchar(255),
+        telefone varchar(255),
+        primary key (id)
+    )
+2025-08-02 21:46:08.266 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    create table item_pedido (
+        preco_unitario numeric(38,2),
+        quantidade integer not null,
+        subtotal numeric(38,2),
+        id bigint generated by default as identity,
+        pedido_id bigint,
+        produto_id bigint,
+        primary key (id)
+    )
+2025-08-02 21:46:08.269 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    create table pedido (
+        subtotal numeric(38,2),
+        taxa_entrega numeric(38,2),
+        valor_total numeric(38,2),
+        cliente_id bigint,
+        data_pedido timestamp(6),
+        id bigint generated by default as identity,
+        restaurante_id bigint,
+        endereco_entrega varchar(255),
+        numero_pedido varchar(255),
+        observacoes varchar(255),
+        status enum ('CANCELADO','CONFIRMADO','ENTREGUE','PENDENTE','PREPARANDO','SAIU_PARA_ENTREGA'),
+        primary key (id)
+    )
+2025-08-02 21:46:08.271 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    create table produto (
+        disponivel boolean not null,
+        preco numeric(38,2),
+        id bigint generated by default as identity,
+        restaurante_id bigint,
+        categoria varchar(255),
+        descricao varchar(255),
+        nome varchar(255),
+        primary key (id)
+    )
+2025-08-02 21:46:08.272 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    create table restaurante (
+        ativo boolean not null,
+        avaliacao numeric(38,2),
+        taxa_entrega numeric(38,2),
+        tempo_entrega integer,
+        id bigint generated by default as identity,
+        categoria varchar(255),
+        endereco varchar(255),
+        horario_funcionamento varchar(255),
+        nome varchar(255),
+        telefone varchar(255),
+        primary key (id)
+    )
+2025-08-02 21:46:08.275 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    create table usuario (
+        ativo boolean not null,
+        data_criacao timestamp(6) not null,
+        id bigint generated by default as identity,
+        restaurante_id bigint,
+        email varchar(255) not null unique,
+        nome varchar(255) not null,
+        senha varchar(255) not null,
+        role enum ('ADMIN','CLIENTE','ENTREGADOR','RESTAURANTE') not null,
+        primary key (id)
+    )
+2025-08-02 21:46:08.278 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    alter table if exists item_pedido 
+       add constraint FK60ym08cfoysa17wrn1swyiuda 
+       foreign key (pedido_id) 
+       references pedido
+2025-08-02 21:46:08.293 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    alter table if exists item_pedido 
+       add constraint FKtk55mn6d6bvl5h0no5uagi3sf 
+       foreign key (produto_id) 
+       references produto
+2025-08-02 21:46:08.294 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    alter table if exists pedido 
+       add constraint FK30s8j2ktpay6of18lbyqn3632 
+       foreign key (cliente_id) 
+       references cliente
+2025-08-02 21:46:08.296 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    alter table if exists pedido 
+       add constraint FK3eud5cqmgsnltyk704hu3qj71 
+       foreign key (restaurante_id) 
+       references restaurante
+2025-08-02 21:46:08.298 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    alter table if exists produto 
+       add constraint FKb9jhjyghjcn25guim7q4pt8qx 
+       foreign key (restaurante_id) 
+       references restaurante
+2025-08-02 21:46:08.309 [restartedMain] INFO  [] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-02 21:46:09.053 [restartedMain] DEBUG [] c.d.d.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-08-02 21:46:09.056 [restartedMain] DEBUG [] o.s.w.f.ServerHttpObservationFilter - Filter 'webMvcObservationFilter' configured for use
+2025-08-02 21:46:09.131 [restartedMain] INFO  [] o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-02 21:46:10.852 [restartedMain] INFO  [] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2025-08-02 21:46:11.118 [restartedMain] DEBUG [] o.s.w.s.m.m.a.RequestMappingHandlerMapping - 50 mappings in 'requestMappingHandlerMapping'
+2025-08-02 21:46:11.373 [restartedMain] DEBUG [] o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-08-02 21:46:11.674 [restartedMain] INFO  [] o.s.b.a.e.web.EndpointLinksResolver - Exposing 6 endpoints beneath base path '/actuator'
+2025-08-02 21:46:12.076 [restartedMain] DEBUG [] o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-02 21:46:12.135 [restartedMain] DEBUG [] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-02 21:46:12.829 [restartedMain] INFO  [] o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-08-02 21:46:12.912 [restartedMain] INFO  [] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-08-02 21:46:12.947 [restartedMain] INFO  [] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-08-02 21:46:12.971 [restartedMain] INFO  [] c.d.delivery_api.Application - Started Application in 13.936 seconds (process running for 15.027)
+2025-08-02 21:46:13.146 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        p1_0.id,
+        p1_0.cliente_id,
+        p1_0.data_pedido,
+        p1_0.endereco_entrega,
+        p1_0.numero_pedido,
+        p1_0.observacoes,
+        p1_0.restaurante_id,
+        p1_0.status,
+        p1_0.subtotal,
+        p1_0.taxa_entrega,
+        p1_0.valor_total 
+    from
+        pedido p1_0
+2025-08-02 21:46:13.178 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        p1_0.id,
+        p1_0.categoria,
+        p1_0.descricao,
+        p1_0.disponivel,
+        p1_0.nome,
+        p1_0.preco,
+        p1_0.restaurante_id 
+    from
+        produto p1_0
+2025-08-02 21:46:13.182 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id,
+        u1_0.ativo,
+        u1_0.data_criacao,
+        u1_0.email,
+        u1_0.nome,
+        u1_0.restaurante_id,
+        u1_0.role,
+        u1_0.senha 
+    from
+        usuario u1_0
+2025-08-02 21:46:13.185 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        c1_0.id,
+        c1_0.ativo,
+        c1_0.data_cadastro,
+        c1_0.email,
+        c1_0.endereco,
+        c1_0.nome,
+        c1_0.telefone 
+    from
+        cliente c1_0
+2025-08-02 21:46:13.187 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        r1_0.id,
+        r1_0.ativo,
+        r1_0.avaliacao,
+        r1_0.categoria,
+        r1_0.endereco,
+        r1_0.horario_funcionamento,
+        r1_0.nome,
+        r1_0.taxa_entrega,
+        r1_0.telefone,
+        r1_0.tempo_entrega 
+    from
+        restaurante r1_0
+2025-08-02 21:46:13.219 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Cliente */insert 
+    into
+        cliente (ativo, data_cadastro, email, endereco, nome, telefone, id) 
+    values
+        (?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:46:13.242 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Cliente */insert 
+    into
+        cliente (ativo, data_cadastro, email, endereco, nome, telefone, id) 
+    values
+        (?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:46:13.244 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Cliente */insert 
+    into
+        cliente (ativo, data_cadastro, email, endereco, nome, telefone, id) 
+    values
+        (?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:46:13.248 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Restaurante */insert 
+    into
+        restaurante (ativo, avaliacao, categoria, endereco, horario_funcionamento, nome, taxa_entrega, telefone, tempo_entrega, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:46:13.250 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Restaurante */insert 
+    into
+        restaurante (ativo, avaliacao, categoria, endereco, horario_funcionamento, nome, taxa_entrega, telefone, tempo_entrega, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:46:13.251 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Restaurante */insert 
+    into
+        restaurante (ativo, avaliacao, categoria, endereco, horario_funcionamento, nome, taxa_entrega, telefone, tempo_entrega, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:46:13.283 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        r1_0.id,
+        r1_0.ativo,
+        r1_0.avaliacao,
+        r1_0.categoria,
+        r1_0.endereco,
+        r1_0.horario_funcionamento,
+        r1_0.nome,
+        r1_0.taxa_entrega,
+        r1_0.telefone,
+        r1_0.tempo_entrega 
+    from
+        restaurante r1_0 
+    where
+        r1_0.nome=?
+2025-08-02 21:46:13.289 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        r1_0.id,
+        r1_0.ativo,
+        r1_0.avaliacao,
+        r1_0.categoria,
+        r1_0.endereco,
+        r1_0.horario_funcionamento,
+        r1_0.nome,
+        r1_0.taxa_entrega,
+        r1_0.telefone,
+        r1_0.tempo_entrega 
+    from
+        restaurante r1_0 
+    where
+        r1_0.nome=?
+2025-08-02 21:46:13.291 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        r1_0.id,
+        r1_0.ativo,
+        r1_0.avaliacao,
+        r1_0.categoria,
+        r1_0.endereco,
+        r1_0.horario_funcionamento,
+        r1_0.nome,
+        r1_0.taxa_entrega,
+        r1_0.telefone,
+        r1_0.tempo_entrega 
+    from
+        restaurante r1_0 
+    where
+        r1_0.nome=?
+2025-08-02 21:46:13.294 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Produto */insert 
+    into
+        produto (categoria, descricao, disponivel, nome, preco, restaurante_id, id) 
+    values
+        (?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:46:13.296 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Produto */insert 
+    into
+        produto (categoria, descricao, disponivel, nome, preco, restaurante_id, id) 
+    values
+        (?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:46:13.297 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Produto */insert 
+    into
+        produto (categoria, descricao, disponivel, nome, preco, restaurante_id, id) 
+    values
+        (?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:46:13.298 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Produto */insert 
+    into
+        produto (categoria, descricao, disponivel, nome, preco, restaurante_id, id) 
+    values
+        (?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:46:13.300 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Produto */insert 
+    into
+        produto (categoria, descricao, disponivel, nome, preco, restaurante_id, id) 
+    values
+        (?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:46:13.304 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        c1_0.id,
+        c1_0.ativo,
+        c1_0.data_cadastro,
+        c1_0.email,
+        c1_0.endereco,
+        c1_0.nome,
+        c1_0.telefone 
+    from
+        cliente c1_0 
+    where
+        c1_0.email=?
+2025-08-02 21:46:13.308 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        r1_0.id,
+        r1_0.ativo,
+        r1_0.avaliacao,
+        r1_0.categoria,
+        r1_0.endereco,
+        r1_0.horario_funcionamento,
+        r1_0.nome,
+        r1_0.taxa_entrega,
+        r1_0.telefone,
+        r1_0.tempo_entrega 
+    from
+        restaurante r1_0 
+    where
+        r1_0.nome=?
+2025-08-02 21:46:13.328 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Pedido */insert 
+    into
+        pedido (cliente_id, data_pedido, endereco_entrega, numero_pedido, observacoes, restaurante_id, status, subtotal, taxa_entrega, valor_total, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:46:13.334 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.ItemPedido */insert 
+    into
+        item_pedido (pedido_id, preco_unitario, produto_id, quantidade, subtotal, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2025-08-02 21:46:13.345 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        r1_0.id,
+        r1_0.ativo,
+        r1_0.avaliacao,
+        r1_0.categoria,
+        r1_0.endereco,
+        r1_0.horario_funcionamento,
+        r1_0.nome,
+        r1_0.taxa_entrega,
+        r1_0.telefone,
+        r1_0.tempo_entrega 
+    from
+        restaurante r1_0 
+    where
+        r1_0.nome=?
+2025-08-02 21:46:13.347 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Usuario */insert 
+    into
+        usuario (ativo, data_criacao, email, nome, restaurante_id, role, senha, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:46:13.349 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Usuario */insert 
+    into
+        usuario (ativo, data_criacao, email, nome, restaurante_id, role, senha, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:46:13.351 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Usuario */insert 
+    into
+        usuario (ativo, data_criacao, email, nome, restaurante_id, role, senha, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:46:21.759 [http-nio-8080-exec-2] INFO  [] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-02 21:46:21.759 [http-nio-8080-exec-2] INFO  [] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-08-02 21:46:21.759 [http-nio-8080-exec-2] DEBUG [] o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
+2025-08-02 21:46:21.760 [http-nio-8080-exec-2] DEBUG [] o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
+2025-08-02 21:46:21.760 [http-nio-8080-exec-2] DEBUG [] o.s.web.servlet.DispatcherServlet - Detected FixedThemeResolver
+2025-08-02 21:46:21.763 [http-nio-8080-exec-2] DEBUG [] o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@511011dd
+2025-08-02 21:46:21.764 [http-nio-8080-exec-2] DEBUG [] o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@4d7cbb11
+2025-08-02 21:46:21.764 [http-nio-8080-exec-2] DEBUG [] o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-08-02 21:46:21.764 [http-nio-8080-exec-2] INFO  [] o.s.web.servlet.DispatcherServlet - Completed initialization in 5 ms
+2025-08-02 21:46:21.819 [http-nio-8080-exec-2] WARN  [] c.d.d.s.JwtAuthenticationFilter - JWT Token não começa com Bearer String
+2025-08-02 21:46:21.842 [http-nio-8080-exec-2] DEBUG [2fd7e213-bdbe-41d5-ba8d-7fdcea87ae68] o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-initializer.js", parameters={}
+2025-08-02 21:46:21.848 [http-nio-8080-exec-2] DEBUG [2fd7e213-bdbe-41d5-ba8d-7fdcea87ae68] o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-08-02 21:46:21.931 [http-nio-8080-exec-2] DEBUG [2fd7e213-bdbe-41d5-ba8d-7fdcea87ae68] o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-08-02 21:46:22.093 [http-nio-8080-exec-3] WARN  [] c.d.d.s.JwtAuthenticationFilter - JWT Token não começa com Bearer String
+2025-08-02 21:46:22.096 [http-nio-8080-exec-3] DEBUG [5d3d3212-0b7e-4312-a5a4-5c5d663d5e3e] o.s.web.servlet.DispatcherServlet - GET "/api-docs/swagger-config", parameters={}
+2025-08-02 21:46:22.097 [http-nio-8080-exec-3] DEBUG [5d3d3212-0b7e-4312-a5a4-5c5d663d5e3e] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springdoc.webmvc.ui.SwaggerConfigResource#openapiJson(HttpServletRequest)
+2025-08-02 21:46:22.118 [http-nio-8080-exec-3] DEBUG [5d3d3212-0b7e-4312-a5a4-5c5d663d5e3e] o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json]
+2025-08-02 21:46:22.120 [http-nio-8080-exec-3] DEBUG [5d3d3212-0b7e-4312-a5a4-5c5d663d5e3e] o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{configUrl=/api-docs/swagger-config, filter=true, oauth2RedirectUrl=http://localhost:8080/swagger-ui (truncated)...]
+2025-08-02 21:46:22.126 [http-nio-8080-exec-3] DEBUG [5d3d3212-0b7e-4312-a5a4-5c5d663d5e3e] o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-08-02 21:46:22.134 [http-nio-8080-exec-1] WARN  [] c.d.d.s.JwtAuthenticationFilter - JWT Token não começa com Bearer String
+2025-08-02 21:46:22.136 [http-nio-8080-exec-1] DEBUG [f24810c9-cc82-4b5e-9658-cb386ab941ce] o.s.web.servlet.DispatcherServlet - GET "/api-docs", parameters={}
+2025-08-02 21:46:22.137 [http-nio-8080-exec-1] DEBUG [f24810c9-cc82-4b5e-9658-cb386ab941ce] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springdoc.webmvc.api.OpenApiWebMvcResource#openapiJson(HttpServletRequest, String, Locale)
+2025-08-02 21:46:24.461 [http-nio-8080-exec-1] INFO  [f24810c9-cc82-4b5e-9658-cb386ab941ce] o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 2306 ms
+2025-08-02 21:46:24.504 [http-nio-8080-exec-1] DEBUG [f24810c9-cc82-4b5e-9658-cb386ab941ce] o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, */*] and supported [application/json]
+2025-08-02 21:46:24.522 [http-nio-8080-exec-1] DEBUG [f24810c9-cc82-4b5e-9658-cb386ab941ce] o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{123, 34, 111, 112, 101, 110, 97, 112, 105, 34, 58, 34, 51, 46, 48, 46, 49, 34, 44, 34, 105, 110, 10 (truncated)...]
+2025-08-02 21:46:24.525 [http-nio-8080-exec-1] DEBUG [f24810c9-cc82-4b5e-9658-cb386ab941ce] o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-08-02 21:46:47.713 [http-nio-8080-exec-7] WARN  [] c.d.d.s.JwtAuthenticationFilter - JWT Token não começa com Bearer String
+2025-08-02 21:46:50.165 [http-nio-8080-exec-5] WARN  [] c.d.d.s.JwtAuthenticationFilter - JWT Token não começa com Bearer String
+2025-08-02 21:47:00.603 [http-nio-8080-exec-6] WARN  [] c.d.d.s.JwtAuthenticationFilter - JWT Token não começa com Bearer String
+2025-08-02 21:47:38.722 [background-preinit] INFO  [] o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2025-08-02 21:47:38.875 [restartedMain] INFO  [] c.d.delivery_api.Application - Starting Application using Java 21.0.7 with PID 11232 (C:\Users\ismae\OneDrive\Área de Trabalho\Fat\delivery.api\target\classes started by ismae in c:\Users\ismae\OneDrive\Área de Trabalho\Fat\delivery.api)
+2025-08-02 21:47:38.877 [restartedMain] DEBUG [] c.d.delivery_api.Application - Running with Spring Boot v3.3.1, Spring v6.1.10
+2025-08-02 21:47:38.879 [restartedMain] INFO  [] c.d.delivery_api.Application - No active profile set, falling back to 1 default profile: "default"
+2025-08-02 21:47:38.974 [restartedMain] INFO  [] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-08-02 21:47:38.975 [restartedMain] INFO  [] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-08-02 21:47:41.463 [restartedMain] INFO  [] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-02 21:47:41.648 [restartedMain] INFO  [] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 172 ms. Found 5 JPA repository interfaces.
+2025-08-02 21:47:43.523 [restartedMain] INFO  [] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-08-02 21:47:43.548 [restartedMain] INFO  [] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-08-02 21:47:43.555 [restartedMain] INFO  [] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-02 21:47:43.556 [restartedMain] INFO  [] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.25]
+2025-08-02 21:47:43.748 [restartedMain] INFO  [] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-08-02 21:47:43.750 [restartedMain] INFO  [] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4772 ms
+2025-08-02 21:47:44.065 [restartedMain] INFO  [] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-02 21:47:44.309 [restartedMain] INFO  [] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:delivery user=SA
+2025-08-02 21:47:44.312 [restartedMain] INFO  [] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-02 21:47:44.328 [restartedMain] INFO  [] o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:delivery'
+2025-08-02 21:47:44.953 [restartedMain] INFO  [] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-02 21:47:45.093 [restartedMain] INFO  [] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2025-08-02 21:47:45.171 [restartedMain] INFO  [] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-08-02 21:47:45.763 [restartedMain] INFO  [] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-02 21:47:45.856 [restartedMain] WARN  [] org.hibernate.orm.deprecation - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-02 21:47:47.514 [restartedMain] INFO  [] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-02 21:47:47.530 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    drop table if exists cliente cascade 
+2025-08-02 21:47:47.534 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    drop table if exists item_pedido cascade 
+2025-08-02 21:47:47.535 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    drop table if exists pedido cascade 
+2025-08-02 21:47:47.535 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    drop table if exists produto cascade 
+2025-08-02 21:47:47.535 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    drop table if exists restaurante cascade 
+2025-08-02 21:47:47.536 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    drop table if exists usuario cascade 
+2025-08-02 21:47:47.540 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    create table cliente (
+        ativo boolean not null,
+        data_cadastro timestamp(6),
+        id bigint generated by default as identity,
+        email varchar(255),
+        endereco varchar(255),
+        nome varchar(255),
+        telefone varchar(255),
+        primary key (id)
+    )
+2025-08-02 21:47:47.549 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    create table item_pedido (
+        preco_unitario numeric(38,2),
+        quantidade integer not null,
+        subtotal numeric(38,2),
+        id bigint generated by default as identity,
+        pedido_id bigint,
+        produto_id bigint,
+        primary key (id)
+    )
+2025-08-02 21:47:47.553 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    create table pedido (
+        subtotal numeric(38,2),
+        taxa_entrega numeric(38,2),
+        valor_total numeric(38,2),
+        cliente_id bigint,
+        data_pedido timestamp(6),
+        id bigint generated by default as identity,
+        restaurante_id bigint,
+        endereco_entrega varchar(255),
+        numero_pedido varchar(255),
+        observacoes varchar(255),
+        status enum ('CANCELADO','CONFIRMADO','ENTREGUE','PENDENTE','PREPARANDO','SAIU_PARA_ENTREGA'),
+        primary key (id)
+    )
+2025-08-02 21:47:47.555 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    create table produto (
+        disponivel boolean not null,
+        preco numeric(38,2),
+        id bigint generated by default as identity,
+        restaurante_id bigint,
+        categoria varchar(255),
+        descricao varchar(255),
+        nome varchar(255),
+        primary key (id)
+    )
+2025-08-02 21:47:47.556 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    create table restaurante (
+        ativo boolean not null,
+        avaliacao numeric(38,2),
+        taxa_entrega numeric(38,2),
+        tempo_entrega integer,
+        id bigint generated by default as identity,
+        categoria varchar(255),
+        endereco varchar(255),
+        horario_funcionamento varchar(255),
+        nome varchar(255),
+        telefone varchar(255),
+        primary key (id)
+    )
+2025-08-02 21:47:47.559 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    create table usuario (
+        ativo boolean not null,
+        data_criacao timestamp(6) not null,
+        id bigint generated by default as identity,
+        restaurante_id bigint,
+        email varchar(255) not null unique,
+        nome varchar(255) not null,
+        senha varchar(255) not null,
+        role enum ('ADMIN','CLIENTE','ENTREGADOR','RESTAURANTE') not null,
+        primary key (id)
+    )
+2025-08-02 21:47:47.562 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    alter table if exists item_pedido 
+       add constraint FK60ym08cfoysa17wrn1swyiuda 
+       foreign key (pedido_id) 
+       references pedido
+2025-08-02 21:47:47.579 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    alter table if exists item_pedido 
+       add constraint FKtk55mn6d6bvl5h0no5uagi3sf 
+       foreign key (produto_id) 
+       references produto
+2025-08-02 21:47:47.582 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    alter table if exists pedido 
+       add constraint FK30s8j2ktpay6of18lbyqn3632 
+       foreign key (cliente_id) 
+       references cliente
+2025-08-02 21:47:47.584 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    alter table if exists pedido 
+       add constraint FK3eud5cqmgsnltyk704hu3qj71 
+       foreign key (restaurante_id) 
+       references restaurante
+2025-08-02 21:47:47.587 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    alter table if exists produto 
+       add constraint FKb9jhjyghjcn25guim7q4pt8qx 
+       foreign key (restaurante_id) 
+       references restaurante
+2025-08-02 21:47:47.597 [restartedMain] INFO  [] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-02 21:47:48.343 [restartedMain] DEBUG [] c.d.d.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-08-02 21:47:48.345 [restartedMain] DEBUG [] o.s.w.f.ServerHttpObservationFilter - Filter 'webMvcObservationFilter' configured for use
+2025-08-02 21:47:48.431 [restartedMain] INFO  [] o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-02 21:47:50.392 [restartedMain] INFO  [] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2025-08-02 21:47:50.725 [restartedMain] DEBUG [] o.s.w.s.m.m.a.RequestMappingHandlerMapping - 50 mappings in 'requestMappingHandlerMapping'
+2025-08-02 21:47:51.011 [restartedMain] DEBUG [] o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-08-02 21:47:51.267 [restartedMain] INFO  [] o.s.b.a.e.web.EndpointLinksResolver - Exposing 6 endpoints beneath base path '/actuator'
+2025-08-02 21:47:51.629 [restartedMain] DEBUG [] o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-02 21:47:51.710 [restartedMain] DEBUG [] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-02 21:47:52.471 [restartedMain] INFO  [] o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-08-02 21:47:52.577 [restartedMain] INFO  [] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-08-02 21:47:52.621 [restartedMain] INFO  [] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-08-02 21:47:52.679 [restartedMain] INFO  [] c.d.delivery_api.Application - Started Application in 14.706 seconds (process running for 15.819)
+2025-08-02 21:47:52.887 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        p1_0.id,
+        p1_0.cliente_id,
+        p1_0.data_pedido,
+        p1_0.endereco_entrega,
+        p1_0.numero_pedido,
+        p1_0.observacoes,
+        p1_0.restaurante_id,
+        p1_0.status,
+        p1_0.subtotal,
+        p1_0.taxa_entrega,
+        p1_0.valor_total 
+    from
+        pedido p1_0
+2025-08-02 21:47:52.925 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        p1_0.id,
+        p1_0.categoria,
+        p1_0.descricao,
+        p1_0.disponivel,
+        p1_0.nome,
+        p1_0.preco,
+        p1_0.restaurante_id 
+    from
+        produto p1_0
+2025-08-02 21:47:52.928 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id,
+        u1_0.ativo,
+        u1_0.data_criacao,
+        u1_0.email,
+        u1_0.nome,
+        u1_0.restaurante_id,
+        u1_0.role,
+        u1_0.senha 
+    from
+        usuario u1_0
+2025-08-02 21:47:52.931 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        c1_0.id,
+        c1_0.ativo,
+        c1_0.data_cadastro,
+        c1_0.email,
+        c1_0.endereco,
+        c1_0.nome,
+        c1_0.telefone 
+    from
+        cliente c1_0
+2025-08-02 21:47:52.935 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        r1_0.id,
+        r1_0.ativo,
+        r1_0.avaliacao,
+        r1_0.categoria,
+        r1_0.endereco,
+        r1_0.horario_funcionamento,
+        r1_0.nome,
+        r1_0.taxa_entrega,
+        r1_0.telefone,
+        r1_0.tempo_entrega 
+    from
+        restaurante r1_0
+2025-08-02 21:47:52.979 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Cliente */insert 
+    into
+        cliente (ativo, data_cadastro, email, endereco, nome, telefone, id) 
+    values
+        (?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:47:53.011 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Cliente */insert 
+    into
+        cliente (ativo, data_cadastro, email, endereco, nome, telefone, id) 
+    values
+        (?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:47:53.013 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Cliente */insert 
+    into
+        cliente (ativo, data_cadastro, email, endereco, nome, telefone, id) 
+    values
+        (?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:47:53.017 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Restaurante */insert 
+    into
+        restaurante (ativo, avaliacao, categoria, endereco, horario_funcionamento, nome, taxa_entrega, telefone, tempo_entrega, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:47:53.019 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Restaurante */insert 
+    into
+        restaurante (ativo, avaliacao, categoria, endereco, horario_funcionamento, nome, taxa_entrega, telefone, tempo_entrega, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:47:53.020 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Restaurante */insert 
+    into
+        restaurante (ativo, avaliacao, categoria, endereco, horario_funcionamento, nome, taxa_entrega, telefone, tempo_entrega, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:47:53.053 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        r1_0.id,
+        r1_0.ativo,
+        r1_0.avaliacao,
+        r1_0.categoria,
+        r1_0.endereco,
+        r1_0.horario_funcionamento,
+        r1_0.nome,
+        r1_0.taxa_entrega,
+        r1_0.telefone,
+        r1_0.tempo_entrega 
+    from
+        restaurante r1_0 
+    where
+        r1_0.nome=?
+2025-08-02 21:47:53.060 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        r1_0.id,
+        r1_0.ativo,
+        r1_0.avaliacao,
+        r1_0.categoria,
+        r1_0.endereco,
+        r1_0.horario_funcionamento,
+        r1_0.nome,
+        r1_0.taxa_entrega,
+        r1_0.telefone,
+        r1_0.tempo_entrega 
+    from
+        restaurante r1_0 
+    where
+        r1_0.nome=?
+2025-08-02 21:47:53.062 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        r1_0.id,
+        r1_0.ativo,
+        r1_0.avaliacao,
+        r1_0.categoria,
+        r1_0.endereco,
+        r1_0.horario_funcionamento,
+        r1_0.nome,
+        r1_0.taxa_entrega,
+        r1_0.telefone,
+        r1_0.tempo_entrega 
+    from
+        restaurante r1_0 
+    where
+        r1_0.nome=?
+2025-08-02 21:47:53.065 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Produto */insert 
+    into
+        produto (categoria, descricao, disponivel, nome, preco, restaurante_id, id) 
+    values
+        (?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:47:53.067 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Produto */insert 
+    into
+        produto (categoria, descricao, disponivel, nome, preco, restaurante_id, id) 
+    values
+        (?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:47:53.069 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Produto */insert 
+    into
+        produto (categoria, descricao, disponivel, nome, preco, restaurante_id, id) 
+    values
+        (?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:47:53.070 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Produto */insert 
+    into
+        produto (categoria, descricao, disponivel, nome, preco, restaurante_id, id) 
+    values
+        (?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:47:53.071 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Produto */insert 
+    into
+        produto (categoria, descricao, disponivel, nome, preco, restaurante_id, id) 
+    values
+        (?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:47:53.077 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        c1_0.id,
+        c1_0.ativo,
+        c1_0.data_cadastro,
+        c1_0.email,
+        c1_0.endereco,
+        c1_0.nome,
+        c1_0.telefone 
+    from
+        cliente c1_0 
+    where
+        c1_0.email=?
+2025-08-02 21:47:53.079 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        r1_0.id,
+        r1_0.ativo,
+        r1_0.avaliacao,
+        r1_0.categoria,
+        r1_0.endereco,
+        r1_0.horario_funcionamento,
+        r1_0.nome,
+        r1_0.taxa_entrega,
+        r1_0.telefone,
+        r1_0.tempo_entrega 
+    from
+        restaurante r1_0 
+    where
+        r1_0.nome=?
+2025-08-02 21:47:53.108 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Pedido */insert 
+    into
+        pedido (cliente_id, data_pedido, endereco_entrega, numero_pedido, observacoes, restaurante_id, status, subtotal, taxa_entrega, valor_total, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:47:53.115 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.ItemPedido */insert 
+    into
+        item_pedido (pedido_id, preco_unitario, produto_id, quantidade, subtotal, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2025-08-02 21:47:53.124 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        r1_0.id,
+        r1_0.ativo,
+        r1_0.avaliacao,
+        r1_0.categoria,
+        r1_0.endereco,
+        r1_0.horario_funcionamento,
+        r1_0.nome,
+        r1_0.taxa_entrega,
+        r1_0.telefone,
+        r1_0.tempo_entrega 
+    from
+        restaurante r1_0 
+    where
+        r1_0.nome=?
+2025-08-02 21:47:53.126 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Usuario */insert 
+    into
+        usuario (ativo, data_criacao, email, nome, restaurante_id, role, senha, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:47:53.129 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Usuario */insert 
+    into
+        usuario (ativo, data_criacao, email, nome, restaurante_id, role, senha, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:47:53.130 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Usuario */insert 
+    into
+        usuario (ativo, data_criacao, email, nome, restaurante_id, role, senha, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:48:01.764 [http-nio-8080-exec-1] INFO  [] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-02 21:48:01.765 [http-nio-8080-exec-1] INFO  [] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-08-02 21:48:01.765 [http-nio-8080-exec-1] DEBUG [] o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
+2025-08-02 21:48:01.766 [http-nio-8080-exec-1] DEBUG [] o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
+2025-08-02 21:48:01.766 [http-nio-8080-exec-1] DEBUG [] o.s.web.servlet.DispatcherServlet - Detected FixedThemeResolver
+2025-08-02 21:48:01.768 [http-nio-8080-exec-1] DEBUG [] o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@381524b1
+2025-08-02 21:48:01.770 [http-nio-8080-exec-1] DEBUG [] o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@27479229
+2025-08-02 21:48:01.770 [http-nio-8080-exec-1] DEBUG [] o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-08-02 21:48:01.771 [http-nio-8080-exec-1] INFO  [] o.s.web.servlet.DispatcherServlet - Completed initialization in 6 ms
+2025-08-02 21:48:01.824 [http-nio-8080-exec-1] WARN  [] c.d.d.s.JwtAuthenticationFilter - JWT Token não começa com Bearer String
+2025-08-02 21:52:18.821 [http-nio-8080-exec-5] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id,
+        u1_0.ativo,
+        u1_0.data_criacao,
+        u1_0.email,
+        u1_0.nome,
+        u1_0.restaurante_id,
+        u1_0.role,
+        u1_0.senha 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+        and u1_0.ativo=?
+2025-08-02 21:52:18.854 [http-nio-8080-exec-5] DEBUG [cfc72a99-eea5-400e-8062-daff3e45d766] o.s.web.servlet.DispatcherServlet - GET "/clientes", parameters={}
+2025-08-02 21:52:18.863 [http-nio-8080-exec-5] DEBUG [cfc72a99-eea5-400e-8062-daff3e45d766] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.deliverytech.delivery_api.controller.ClienteController#listar()
+2025-08-02 21:52:18.905 [http-nio-8080-exec-5] DEBUG [cfc72a99-eea5-400e-8062-daff3e45d766] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler com.deliverytech.delivery_api.controller.advice.RestExceptionHandler#handleAllUncaughtException(Exception)
+2025-08-02 21:52:18.976 [http-nio-8080-exec-5] DEBUG [cfc72a99-eea5-400e-8062-daff3e45d766] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-08-02 21:52:18.979 [http-nio-8080-exec-5] DEBUG [cfc72a99-eea5-400e-8062-daff3e45d766] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [ErrorResponse(success=false, error=ErrorResponse.ErrorDetails(code=INTERNAL_SERVER_ERROR, message=Oc (truncated)...]
+2025-08-02 21:52:19.009 [http-nio-8080-exec-5] WARN  [cfc72a99-eea5-400e-8062-daff3e45d766] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.lang.IllegalArgumentException: Cannot find cache named 'clientes' for Builder[public java.util.List com.deliverytech.delivery_api.service.ClienteService.listarAtivos()] caches=[clientes] | key='' | keyGenerator='' | cacheManager='' | cacheResolver='' | condition='' | unless='' | sync='false']
+2025-08-02 21:52:19.011 [http-nio-8080-exec-5] DEBUG [cfc72a99-eea5-400e-8062-daff3e45d766] o.s.web.servlet.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR
+2025-08-02 21:52:25.894 [http-nio-8080-exec-7] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id,
+        u1_0.ativo,
+        u1_0.data_criacao,
+        u1_0.email,
+        u1_0.nome,
+        u1_0.restaurante_id,
+        u1_0.role,
+        u1_0.senha 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+        and u1_0.ativo=?
+2025-08-02 21:52:25.900 [http-nio-8080-exec-7] DEBUG [9d430cbc-f2d0-4825-a464-92359beeca46] o.s.web.servlet.DispatcherServlet - GET "/clientes", parameters={}
+2025-08-02 21:52:25.900 [http-nio-8080-exec-7] DEBUG [9d430cbc-f2d0-4825-a464-92359beeca46] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.deliverytech.delivery_api.controller.ClienteController#listar()
+2025-08-02 21:52:25.901 [http-nio-8080-exec-7] DEBUG [9d430cbc-f2d0-4825-a464-92359beeca46] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler com.deliverytech.delivery_api.controller.advice.RestExceptionHandler#handleAllUncaughtException(Exception)
+2025-08-02 21:52:25.901 [http-nio-8080-exec-7] DEBUG [9d430cbc-f2d0-4825-a464-92359beeca46] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-08-02 21:52:25.902 [http-nio-8080-exec-7] DEBUG [9d430cbc-f2d0-4825-a464-92359beeca46] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [ErrorResponse(success=false, error=ErrorResponse.ErrorDetails(code=INTERNAL_SERVER_ERROR, message=Oc (truncated)...]
+2025-08-02 21:52:25.902 [http-nio-8080-exec-7] WARN  [9d430cbc-f2d0-4825-a464-92359beeca46] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.lang.IllegalArgumentException: Cannot find cache named 'clientes' for Builder[public java.util.List com.deliverytech.delivery_api.service.ClienteService.listarAtivos()] caches=[clientes] | key='' | keyGenerator='' | cacheManager='' | cacheResolver='' | condition='' | unless='' | sync='false']
+2025-08-02 21:52:25.902 [http-nio-8080-exec-7] DEBUG [9d430cbc-f2d0-4825-a464-92359beeca46] o.s.web.servlet.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR
+2025-08-02 21:52:26.905 [http-nio-8080-exec-9] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id,
+        u1_0.ativo,
+        u1_0.data_criacao,
+        u1_0.email,
+        u1_0.nome,
+        u1_0.restaurante_id,
+        u1_0.role,
+        u1_0.senha 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+        and u1_0.ativo=?
+2025-08-02 21:52:26.912 [http-nio-8080-exec-9] DEBUG [533b97b3-9ceb-4b9a-9ee9-34816607e425] o.s.web.servlet.DispatcherServlet - GET "/clientes", parameters={}
+2025-08-02 21:52:26.913 [http-nio-8080-exec-9] DEBUG [533b97b3-9ceb-4b9a-9ee9-34816607e425] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.deliverytech.delivery_api.controller.ClienteController#listar()
+2025-08-02 21:52:26.914 [http-nio-8080-exec-9] DEBUG [533b97b3-9ceb-4b9a-9ee9-34816607e425] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler com.deliverytech.delivery_api.controller.advice.RestExceptionHandler#handleAllUncaughtException(Exception)
+2025-08-02 21:52:26.914 [http-nio-8080-exec-9] DEBUG [533b97b3-9ceb-4b9a-9ee9-34816607e425] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-08-02 21:52:26.914 [http-nio-8080-exec-9] DEBUG [533b97b3-9ceb-4b9a-9ee9-34816607e425] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [ErrorResponse(success=false, error=ErrorResponse.ErrorDetails(code=INTERNAL_SERVER_ERROR, message=Oc (truncated)...]
+2025-08-02 21:52:26.915 [http-nio-8080-exec-9] WARN  [533b97b3-9ceb-4b9a-9ee9-34816607e425] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.lang.IllegalArgumentException: Cannot find cache named 'clientes' for Builder[public java.util.List com.deliverytech.delivery_api.service.ClienteService.listarAtivos()] caches=[clientes] | key='' | keyGenerator='' | cacheManager='' | cacheResolver='' | condition='' | unless='' | sync='false']
+2025-08-02 21:52:26.916 [http-nio-8080-exec-9] DEBUG [533b97b3-9ceb-4b9a-9ee9-34816607e425] o.s.web.servlet.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR
+2025-08-02 21:52:27.674 [http-nio-8080-exec-1] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id,
+        u1_0.ativo,
+        u1_0.data_criacao,
+        u1_0.email,
+        u1_0.nome,
+        u1_0.restaurante_id,
+        u1_0.role,
+        u1_0.senha 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+        and u1_0.ativo=?
+2025-08-02 21:52:27.680 [http-nio-8080-exec-1] DEBUG [94178ac3-11b8-466e-b01f-9c61ef0de7b4] o.s.web.servlet.DispatcherServlet - GET "/clientes", parameters={}
+2025-08-02 21:52:27.680 [http-nio-8080-exec-1] DEBUG [94178ac3-11b8-466e-b01f-9c61ef0de7b4] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.deliverytech.delivery_api.controller.ClienteController#listar()
+2025-08-02 21:52:27.681 [http-nio-8080-exec-1] DEBUG [94178ac3-11b8-466e-b01f-9c61ef0de7b4] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler com.deliverytech.delivery_api.controller.advice.RestExceptionHandler#handleAllUncaughtException(Exception)
+2025-08-02 21:52:27.682 [http-nio-8080-exec-1] DEBUG [94178ac3-11b8-466e-b01f-9c61ef0de7b4] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-08-02 21:52:27.682 [http-nio-8080-exec-1] DEBUG [94178ac3-11b8-466e-b01f-9c61ef0de7b4] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [ErrorResponse(success=false, error=ErrorResponse.ErrorDetails(code=INTERNAL_SERVER_ERROR, message=Oc (truncated)...]
+2025-08-02 21:52:27.683 [http-nio-8080-exec-1] WARN  [94178ac3-11b8-466e-b01f-9c61ef0de7b4] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.lang.IllegalArgumentException: Cannot find cache named 'clientes' for Builder[public java.util.List com.deliverytech.delivery_api.service.ClienteService.listarAtivos()] caches=[clientes] | key='' | keyGenerator='' | cacheManager='' | cacheResolver='' | condition='' | unless='' | sync='false']
+2025-08-02 21:52:27.683 [http-nio-8080-exec-1] DEBUG [94178ac3-11b8-466e-b01f-9c61ef0de7b4] o.s.web.servlet.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR
+2025-08-02 21:52:28.467 [http-nio-8080-exec-3] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id,
+        u1_0.ativo,
+        u1_0.data_criacao,
+        u1_0.email,
+        u1_0.nome,
+        u1_0.restaurante_id,
+        u1_0.role,
+        u1_0.senha 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+        and u1_0.ativo=?
+2025-08-02 21:52:28.472 [http-nio-8080-exec-3] DEBUG [db1c5f16-5674-4f97-89f2-230e26e28b03] o.s.web.servlet.DispatcherServlet - GET "/clientes", parameters={}
+2025-08-02 21:52:28.473 [http-nio-8080-exec-3] DEBUG [db1c5f16-5674-4f97-89f2-230e26e28b03] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.deliverytech.delivery_api.controller.ClienteController#listar()
+2025-08-02 21:52:28.474 [http-nio-8080-exec-3] DEBUG [db1c5f16-5674-4f97-89f2-230e26e28b03] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler com.deliverytech.delivery_api.controller.advice.RestExceptionHandler#handleAllUncaughtException(Exception)
+2025-08-02 21:52:28.475 [http-nio-8080-exec-3] DEBUG [db1c5f16-5674-4f97-89f2-230e26e28b03] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-08-02 21:52:28.475 [http-nio-8080-exec-3] DEBUG [db1c5f16-5674-4f97-89f2-230e26e28b03] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [ErrorResponse(success=false, error=ErrorResponse.ErrorDetails(code=INTERNAL_SERVER_ERROR, message=Oc (truncated)...]
+2025-08-02 21:52:28.476 [http-nio-8080-exec-3] WARN  [db1c5f16-5674-4f97-89f2-230e26e28b03] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.lang.IllegalArgumentException: Cannot find cache named 'clientes' for Builder[public java.util.List com.deliverytech.delivery_api.service.ClienteService.listarAtivos()] caches=[clientes] | key='' | keyGenerator='' | cacheManager='' | cacheResolver='' | condition='' | unless='' | sync='false']
+2025-08-02 21:52:28.476 [http-nio-8080-exec-3] DEBUG [db1c5f16-5674-4f97-89f2-230e26e28b03] o.s.web.servlet.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR
+2025-08-02 21:52:38.378 [http-nio-8080-exec-5] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id,
+        u1_0.ativo,
+        u1_0.data_criacao,
+        u1_0.email,
+        u1_0.nome,
+        u1_0.restaurante_id,
+        u1_0.role,
+        u1_0.senha 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+        and u1_0.ativo=?
+2025-08-02 21:52:38.387 [http-nio-8080-exec-5] DEBUG [2efaa95f-3556-4f43-b9ad-93efe66e42f2] o.s.web.servlet.DispatcherServlet - GET "/clientes", parameters={}
+2025-08-02 21:52:38.388 [http-nio-8080-exec-5] DEBUG [2efaa95f-3556-4f43-b9ad-93efe66e42f2] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.deliverytech.delivery_api.controller.ClienteController#listar()
+2025-08-02 21:52:38.389 [http-nio-8080-exec-5] DEBUG [2efaa95f-3556-4f43-b9ad-93efe66e42f2] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler com.deliverytech.delivery_api.controller.advice.RestExceptionHandler#handleAllUncaughtException(Exception)
+2025-08-02 21:52:38.389 [http-nio-8080-exec-5] DEBUG [2efaa95f-3556-4f43-b9ad-93efe66e42f2] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-08-02 21:52:38.390 [http-nio-8080-exec-5] DEBUG [2efaa95f-3556-4f43-b9ad-93efe66e42f2] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [ErrorResponse(success=false, error=ErrorResponse.ErrorDetails(code=INTERNAL_SERVER_ERROR, message=Oc (truncated)...]
+2025-08-02 21:52:38.391 [http-nio-8080-exec-5] WARN  [2efaa95f-3556-4f43-b9ad-93efe66e42f2] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.lang.IllegalArgumentException: Cannot find cache named 'clientes' for Builder[public java.util.List com.deliverytech.delivery_api.service.ClienteService.listarAtivos()] caches=[clientes] | key='' | keyGenerator='' | cacheManager='' | cacheResolver='' | condition='' | unless='' | sync='false']
+2025-08-02 21:52:38.391 [http-nio-8080-exec-5] DEBUG [2efaa95f-3556-4f43-b9ad-93efe66e42f2] o.s.web.servlet.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR
+2025-08-02 21:54:43.952 [background-preinit] INFO  [] o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2025-08-02 21:54:44.117 [restartedMain] INFO  [] c.d.delivery_api.Application - Starting Application using Java 21.0.7 with PID 27800 (C:\Users\ismae\OneDrive\Área de Trabalho\Fat\delivery.api\target\classes started by ismae in c:\Users\ismae\OneDrive\Área de Trabalho\Fat\delivery.api)
+2025-08-02 21:54:44.118 [restartedMain] DEBUG [] c.d.delivery_api.Application - Running with Spring Boot v3.3.1, Spring v6.1.10
+2025-08-02 21:54:44.120 [restartedMain] INFO  [] c.d.delivery_api.Application - No active profile set, falling back to 1 default profile: "default"
+2025-08-02 21:54:44.216 [restartedMain] INFO  [] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-08-02 21:54:44.217 [restartedMain] INFO  [] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-08-02 21:54:46.660 [restartedMain] INFO  [] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-02 21:54:46.833 [restartedMain] INFO  [] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 160 ms. Found 5 JPA repository interfaces.
+2025-08-02 21:54:48.854 [restartedMain] INFO  [] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-08-02 21:54:48.874 [restartedMain] INFO  [] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-08-02 21:54:48.880 [restartedMain] INFO  [] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-02 21:54:48.881 [restartedMain] INFO  [] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.25]
+2025-08-02 21:54:49.059 [restartedMain] INFO  [] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-08-02 21:54:49.062 [restartedMain] INFO  [] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4842 ms
+2025-08-02 21:54:49.394 [restartedMain] INFO  [] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-02 21:54:49.736 [restartedMain] INFO  [] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:delivery user=SA
+2025-08-02 21:54:49.739 [restartedMain] INFO  [] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-02 21:54:49.753 [restartedMain] INFO  [] o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:delivery'
+2025-08-02 21:54:50.068 [restartedMain] INFO  [] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-02 21:54:50.165 [restartedMain] INFO  [] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2025-08-02 21:54:50.245 [restartedMain] INFO  [] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-08-02 21:54:50.807 [restartedMain] INFO  [] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-02 21:54:50.913 [restartedMain] WARN  [] org.hibernate.orm.deprecation - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-02 21:54:52.447 [restartedMain] INFO  [] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-02 21:54:52.463 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    drop table if exists cliente cascade 
+2025-08-02 21:54:52.497 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    drop table if exists item_pedido cascade 
+2025-08-02 21:54:52.498 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    drop table if exists pedido cascade 
+2025-08-02 21:54:52.498 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    drop table if exists produto cascade 
+2025-08-02 21:54:52.499 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    drop table if exists restaurante cascade 
+2025-08-02 21:54:52.499 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    drop table if exists usuario cascade 
+2025-08-02 21:54:52.505 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    create table cliente (
+        ativo boolean not null,
+        data_cadastro timestamp(6),
+        id bigint generated by default as identity,
+        email varchar(255),
+        endereco varchar(255),
+        nome varchar(255),
+        telefone varchar(255),
+        primary key (id)
+    )
+2025-08-02 21:54:52.515 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    create table item_pedido (
+        preco_unitario numeric(38,2),
+        quantidade integer not null,
+        subtotal numeric(38,2),
+        id bigint generated by default as identity,
+        pedido_id bigint,
+        produto_id bigint,
+        primary key (id)
+    )
+2025-08-02 21:54:52.518 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    create table pedido (
+        subtotal numeric(38,2),
+        taxa_entrega numeric(38,2),
+        valor_total numeric(38,2),
+        cliente_id bigint,
+        data_pedido timestamp(6),
+        id bigint generated by default as identity,
+        restaurante_id bigint,
+        endereco_entrega varchar(255),
+        numero_pedido varchar(255),
+        observacoes varchar(255),
+        status enum ('CANCELADO','CONFIRMADO','ENTREGUE','PENDENTE','PREPARANDO','SAIU_PARA_ENTREGA'),
+        primary key (id)
+    )
+2025-08-02 21:54:52.521 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    create table produto (
+        disponivel boolean not null,
+        preco numeric(38,2),
+        id bigint generated by default as identity,
+        restaurante_id bigint,
+        categoria varchar(255),
+        descricao varchar(255),
+        nome varchar(255),
+        primary key (id)
+    )
+2025-08-02 21:54:52.522 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    create table restaurante (
+        ativo boolean not null,
+        avaliacao numeric(38,2),
+        taxa_entrega numeric(38,2),
+        tempo_entrega integer,
+        id bigint generated by default as identity,
+        categoria varchar(255),
+        endereco varchar(255),
+        horario_funcionamento varchar(255),
+        nome varchar(255),
+        telefone varchar(255),
+        primary key (id)
+    )
+2025-08-02 21:54:52.524 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    create table usuario (
+        ativo boolean not null,
+        data_criacao timestamp(6) not null,
+        id bigint generated by default as identity,
+        restaurante_id bigint,
+        email varchar(255) not null unique,
+        nome varchar(255) not null,
+        senha varchar(255) not null,
+        role enum ('ADMIN','CLIENTE','ENTREGADOR','RESTAURANTE') not null,
+        primary key (id)
+    )
+2025-08-02 21:54:52.528 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    alter table if exists item_pedido 
+       add constraint FK60ym08cfoysa17wrn1swyiuda 
+       foreign key (pedido_id) 
+       references pedido
+2025-08-02 21:54:52.540 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    alter table if exists item_pedido 
+       add constraint FKtk55mn6d6bvl5h0no5uagi3sf 
+       foreign key (produto_id) 
+       references produto
+2025-08-02 21:54:52.542 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    alter table if exists pedido 
+       add constraint FK30s8j2ktpay6of18lbyqn3632 
+       foreign key (cliente_id) 
+       references cliente
+2025-08-02 21:54:52.543 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    alter table if exists pedido 
+       add constraint FK3eud5cqmgsnltyk704hu3qj71 
+       foreign key (restaurante_id) 
+       references restaurante
+2025-08-02 21:54:52.544 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    alter table if exists produto 
+       add constraint FKb9jhjyghjcn25guim7q4pt8qx 
+       foreign key (restaurante_id) 
+       references restaurante
+2025-08-02 21:54:52.553 [restartedMain] INFO  [] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-02 21:54:53.364 [restartedMain] DEBUG [] c.d.d.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-08-02 21:54:53.366 [restartedMain] DEBUG [] o.s.w.f.ServerHttpObservationFilter - Filter 'webMvcObservationFilter' configured for use
+2025-08-02 21:54:53.452 [restartedMain] INFO  [] o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-02 21:54:55.237 [restartedMain] INFO  [] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2025-08-02 21:54:55.498 [restartedMain] DEBUG [] o.s.w.s.m.m.a.RequestMappingHandlerMapping - 50 mappings in 'requestMappingHandlerMapping'
+2025-08-02 21:54:55.732 [restartedMain] DEBUG [] o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-08-02 21:54:55.959 [restartedMain] INFO  [] o.s.b.a.e.web.EndpointLinksResolver - Exposing 6 endpoints beneath base path '/actuator'
+2025-08-02 21:54:56.382 [restartedMain] DEBUG [] o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-02 21:54:56.467 [restartedMain] DEBUG [] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-02 21:54:57.391 [restartedMain] INFO  [] o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-08-02 21:54:57.488 [restartedMain] INFO  [] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-08-02 21:54:57.544 [restartedMain] INFO  [] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-08-02 21:54:57.579 [restartedMain] INFO  [] c.d.delivery_api.Application - Started Application in 14.424 seconds (process running for 15.481)
+2025-08-02 21:54:57.931 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        p1_0.id,
+        p1_0.cliente_id,
+        p1_0.data_pedido,
+        p1_0.endereco_entrega,
+        p1_0.numero_pedido,
+        p1_0.observacoes,
+        p1_0.restaurante_id,
+        p1_0.status,
+        p1_0.subtotal,
+        p1_0.taxa_entrega,
+        p1_0.valor_total 
+    from
+        pedido p1_0
+2025-08-02 21:54:57.957 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        p1_0.id,
+        p1_0.categoria,
+        p1_0.descricao,
+        p1_0.disponivel,
+        p1_0.nome,
+        p1_0.preco,
+        p1_0.restaurante_id 
+    from
+        produto p1_0
+2025-08-02 21:54:57.959 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id,
+        u1_0.ativo,
+        u1_0.data_criacao,
+        u1_0.email,
+        u1_0.nome,
+        u1_0.restaurante_id,
+        u1_0.role,
+        u1_0.senha 
+    from
+        usuario u1_0
+2025-08-02 21:54:57.961 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        c1_0.id,
+        c1_0.ativo,
+        c1_0.data_cadastro,
+        c1_0.email,
+        c1_0.endereco,
+        c1_0.nome,
+        c1_0.telefone 
+    from
+        cliente c1_0
+2025-08-02 21:54:57.963 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        r1_0.id,
+        r1_0.ativo,
+        r1_0.avaliacao,
+        r1_0.categoria,
+        r1_0.endereco,
+        r1_0.horario_funcionamento,
+        r1_0.nome,
+        r1_0.taxa_entrega,
+        r1_0.telefone,
+        r1_0.tempo_entrega 
+    from
+        restaurante r1_0
+2025-08-02 21:54:57.991 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Cliente */insert 
+    into
+        cliente (ativo, data_cadastro, email, endereco, nome, telefone, id) 
+    values
+        (?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:54:58.012 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Cliente */insert 
+    into
+        cliente (ativo, data_cadastro, email, endereco, nome, telefone, id) 
+    values
+        (?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:54:58.013 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Cliente */insert 
+    into
+        cliente (ativo, data_cadastro, email, endereco, nome, telefone, id) 
+    values
+        (?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:54:58.018 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Restaurante */insert 
+    into
+        restaurante (ativo, avaliacao, categoria, endereco, horario_funcionamento, nome, taxa_entrega, telefone, tempo_entrega, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:54:58.022 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Restaurante */insert 
+    into
+        restaurante (ativo, avaliacao, categoria, endereco, horario_funcionamento, nome, taxa_entrega, telefone, tempo_entrega, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:54:58.023 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Restaurante */insert 
+    into
+        restaurante (ativo, avaliacao, categoria, endereco, horario_funcionamento, nome, taxa_entrega, telefone, tempo_entrega, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:54:58.053 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        r1_0.id,
+        r1_0.ativo,
+        r1_0.avaliacao,
+        r1_0.categoria,
+        r1_0.endereco,
+        r1_0.horario_funcionamento,
+        r1_0.nome,
+        r1_0.taxa_entrega,
+        r1_0.telefone,
+        r1_0.tempo_entrega 
+    from
+        restaurante r1_0 
+    where
+        r1_0.nome=?
+2025-08-02 21:54:58.062 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        r1_0.id,
+        r1_0.ativo,
+        r1_0.avaliacao,
+        r1_0.categoria,
+        r1_0.endereco,
+        r1_0.horario_funcionamento,
+        r1_0.nome,
+        r1_0.taxa_entrega,
+        r1_0.telefone,
+        r1_0.tempo_entrega 
+    from
+        restaurante r1_0 
+    where
+        r1_0.nome=?
+2025-08-02 21:54:58.065 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        r1_0.id,
+        r1_0.ativo,
+        r1_0.avaliacao,
+        r1_0.categoria,
+        r1_0.endereco,
+        r1_0.horario_funcionamento,
+        r1_0.nome,
+        r1_0.taxa_entrega,
+        r1_0.telefone,
+        r1_0.tempo_entrega 
+    from
+        restaurante r1_0 
+    where
+        r1_0.nome=?
+2025-08-02 21:54:58.068 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Produto */insert 
+    into
+        produto (categoria, descricao, disponivel, nome, preco, restaurante_id, id) 
+    values
+        (?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:54:58.073 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Produto */insert 
+    into
+        produto (categoria, descricao, disponivel, nome, preco, restaurante_id, id) 
+    values
+        (?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:54:58.075 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Produto */insert 
+    into
+        produto (categoria, descricao, disponivel, nome, preco, restaurante_id, id) 
+    values
+        (?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:54:58.076 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Produto */insert 
+    into
+        produto (categoria, descricao, disponivel, nome, preco, restaurante_id, id) 
+    values
+        (?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:54:58.077 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Produto */insert 
+    into
+        produto (categoria, descricao, disponivel, nome, preco, restaurante_id, id) 
+    values
+        (?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:54:58.083 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        c1_0.id,
+        c1_0.ativo,
+        c1_0.data_cadastro,
+        c1_0.email,
+        c1_0.endereco,
+        c1_0.nome,
+        c1_0.telefone 
+    from
+        cliente c1_0 
+    where
+        c1_0.email=?
+2025-08-02 21:54:58.086 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        r1_0.id,
+        r1_0.ativo,
+        r1_0.avaliacao,
+        r1_0.categoria,
+        r1_0.endereco,
+        r1_0.horario_funcionamento,
+        r1_0.nome,
+        r1_0.taxa_entrega,
+        r1_0.telefone,
+        r1_0.tempo_entrega 
+    from
+        restaurante r1_0 
+    where
+        r1_0.nome=?
+2025-08-02 21:54:58.132 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Pedido */insert 
+    into
+        pedido (cliente_id, data_pedido, endereco_entrega, numero_pedido, observacoes, restaurante_id, status, subtotal, taxa_entrega, valor_total, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:54:58.140 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.ItemPedido */insert 
+    into
+        item_pedido (pedido_id, preco_unitario, produto_id, quantidade, subtotal, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2025-08-02 21:54:58.152 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        r1_0.id,
+        r1_0.ativo,
+        r1_0.avaliacao,
+        r1_0.categoria,
+        r1_0.endereco,
+        r1_0.horario_funcionamento,
+        r1_0.nome,
+        r1_0.taxa_entrega,
+        r1_0.telefone,
+        r1_0.tempo_entrega 
+    from
+        restaurante r1_0 
+    where
+        r1_0.nome=?
+2025-08-02 21:54:58.155 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Usuario */insert 
+    into
+        usuario (ativo, data_criacao, email, nome, restaurante_id, role, senha, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:54:58.157 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Usuario */insert 
+    into
+        usuario (ativo, data_criacao, email, nome, restaurante_id, role, senha, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:54:58.159 [restartedMain] DEBUG [] org.hibernate.SQL - 
+    /* insert for
+        com.deliverytech.delivery_api.entity.Usuario */insert 
+    into
+        usuario (ativo, data_criacao, email, nome, restaurante_id, role, senha, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-08-02 21:55:45.289 [http-nio-8080-exec-1] INFO  [] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-02 21:55:45.289 [http-nio-8080-exec-1] INFO  [] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-08-02 21:55:45.290 [http-nio-8080-exec-1] DEBUG [] o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
+2025-08-02 21:55:45.290 [http-nio-8080-exec-1] DEBUG [] o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
+2025-08-02 21:55:45.290 [http-nio-8080-exec-1] DEBUG [] o.s.web.servlet.DispatcherServlet - Detected FixedThemeResolver
+2025-08-02 21:55:45.292 [http-nio-8080-exec-1] DEBUG [] o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@1407155a
+2025-08-02 21:55:45.292 [http-nio-8080-exec-1] DEBUG [] o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@65b4298d
+2025-08-02 21:55:45.293 [http-nio-8080-exec-1] DEBUG [] o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-08-02 21:55:45.293 [http-nio-8080-exec-1] INFO  [] o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2025-08-02 21:55:45.468 [http-nio-8080-exec-1] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id,
+        u1_0.ativo,
+        u1_0.data_criacao,
+        u1_0.email,
+        u1_0.nome,
+        u1_0.restaurante_id,
+        u1_0.role,
+        u1_0.senha 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+        and u1_0.ativo=?
+2025-08-02 21:55:45.501 [http-nio-8080-exec-1] DEBUG [e5262750-4f32-49fc-aafd-48dd9ec0a062] o.s.web.servlet.DispatcherServlet - POST "/api/auth/login", parameters={}
+2025-08-02 21:55:45.503 [http-nio-8080-exec-1] DEBUG [e5262750-4f32-49fc-aafd-48dd9ec0a062] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.deliverytech.delivery_api.controller.AuthController#login(LoginRequest)
+2025-08-02 21:55:45.580 [http-nio-8080-exec-1] DEBUG [e5262750-4f32-49fc-aafd-48dd9ec0a062] o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [LoginRequest(email=admin@delivery.com, senha=123456)]
+2025-08-02 21:55:45.746 [http-nio-8080-exec-1] DEBUG [e5262750-4f32-49fc-aafd-48dd9ec0a062] org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id,
+        u1_0.ativo,
+        u1_0.data_criacao,
+        u1_0.email,
+        u1_0.nome,
+        u1_0.restaurante_id,
+        u1_0.role,
+        u1_0.senha 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+        and u1_0.ativo=?
+2025-08-02 21:55:45.812 [http-nio-8080-exec-1] DEBUG [e5262750-4f32-49fc-aafd-48dd9ec0a062] org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id,
+        u1_0.ativo,
+        u1_0.data_criacao,
+        u1_0.email,
+        u1_0.nome,
+        u1_0.restaurante_id,
+        u1_0.role,
+        u1_0.senha 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+        and u1_0.ativo=?
+2025-08-02 21:55:45.857 [http-nio-8080-exec-1] DEBUG [e5262750-4f32-49fc-aafd-48dd9ec0a062] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-08-02 21:55:45.860 [http-nio-8080-exec-1] DEBUG [e5262750-4f32-49fc-aafd-48dd9ec0a062] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [LoginResponse(token=eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJub21lIjoiQWRtaW4gU2lzdGVtYSIsInVzZXJ (truncated)...]
+2025-08-02 21:55:45.878 [http-nio-8080-exec-1] DEBUG [e5262750-4f32-49fc-aafd-48dd9ec0a062] o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-08-02 21:56:26.994 [http-nio-8080-exec-3] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id,
+        u1_0.ativo,
+        u1_0.data_criacao,
+        u1_0.email,
+        u1_0.nome,
+        u1_0.restaurante_id,
+        u1_0.role,
+        u1_0.senha 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+        and u1_0.ativo=?
+2025-08-02 21:56:27.002 [http-nio-8080-exec-3] DEBUG [1ec3c563-2df0-4590-8242-c3a0f1ffd69b] o.s.web.servlet.DispatcherServlet - GET "/clientes", parameters={}
+2025-08-02 21:56:27.002 [http-nio-8080-exec-3] DEBUG [1ec3c563-2df0-4590-8242-c3a0f1ffd69b] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.deliverytech.delivery_api.controller.ClienteController#listar()
+2025-08-02 21:56:30.017 [http-nio-8080-exec-3] DEBUG [1ec3c563-2df0-4590-8242-c3a0f1ffd69b] org.hibernate.SQL - 
+    /* <criteria> */ select
+        c1_0.id,
+        c1_0.ativo,
+        c1_0.data_cadastro,
+        c1_0.email,
+        c1_0.endereco,
+        c1_0.nome,
+        c1_0.telefone 
+    from
+        cliente c1_0 
+    where
+        c1_0.ativo
+2025-08-02 21:56:30.026 [http-nio-8080-exec-3] DEBUG [1ec3c563-2df0-4590-8242-c3a0f1ffd69b] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-08-02 21:56:30.027 [http-nio-8080-exec-3] DEBUG [1ec3c563-2df0-4590-8242-c3a0f1ffd69b] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: com.del (truncated)...]
+2025-08-02 21:56:30.030 [http-nio-8080-exec-3] DEBUG [1ec3c563-2df0-4590-8242-c3a0f1ffd69b] o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-08-02 21:57:47.620 [http-nio-8080-exec-6] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id,
+        u1_0.ativo,
+        u1_0.data_criacao,
+        u1_0.email,
+        u1_0.nome,
+        u1_0.restaurante_id,
+        u1_0.role,
+        u1_0.senha 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+        and u1_0.ativo=?
+2025-08-02 21:57:47.628 [http-nio-8080-exec-6] DEBUG [889c2feb-55d6-4446-b73d-def7febacf5a] o.s.web.servlet.DispatcherServlet - GET "/clientes", parameters={}
+2025-08-02 21:57:47.629 [http-nio-8080-exec-6] DEBUG [889c2feb-55d6-4446-b73d-def7febacf5a] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.deliverytech.delivery_api.controller.ClienteController#listar()
+2025-08-02 21:57:47.630 [http-nio-8080-exec-6] DEBUG [889c2feb-55d6-4446-b73d-def7febacf5a] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-08-02 21:57:47.631 [http-nio-8080-exec-6] DEBUG [889c2feb-55d6-4446-b73d-def7febacf5a] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: com.del (truncated)...]
+2025-08-02 21:57:47.632 [http-nio-8080-exec-6] DEBUG [889c2feb-55d6-4446-b73d-def7febacf5a] o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-08-02 21:58:08.134 [http-nio-8080-exec-7] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id,
+        u1_0.ativo,
+        u1_0.data_criacao,
+        u1_0.email,
+        u1_0.nome,
+        u1_0.restaurante_id,
+        u1_0.role,
+        u1_0.senha 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+        and u1_0.ativo=?
+2025-08-02 21:58:08.142 [http-nio-8080-exec-7] DEBUG [231dc47b-4dbe-441c-b477-1b3c3f92fbe0] o.s.web.servlet.DispatcherServlet - GET "/clientes", parameters={}
+2025-08-02 21:58:08.143 [http-nio-8080-exec-7] DEBUG [231dc47b-4dbe-441c-b477-1b3c3f92fbe0] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.deliverytech.delivery_api.controller.ClienteController#listar()
+2025-08-02 21:58:08.144 [http-nio-8080-exec-7] DEBUG [231dc47b-4dbe-441c-b477-1b3c3f92fbe0] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-08-02 21:58:08.144 [http-nio-8080-exec-7] DEBUG [231dc47b-4dbe-441c-b477-1b3c3f92fbe0] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: com.del (truncated)...]
+2025-08-02 21:58:08.146 [http-nio-8080-exec-7] DEBUG [231dc47b-4dbe-441c-b477-1b3c3f92fbe0] o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-08-02 22:00:27.761 [http-nio-8080-exec-9] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id,
+        u1_0.ativo,
+        u1_0.data_criacao,
+        u1_0.email,
+        u1_0.nome,
+        u1_0.restaurante_id,
+        u1_0.role,
+        u1_0.senha 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+        and u1_0.ativo=?
+2025-08-02 22:00:27.768 [http-nio-8080-exec-9] DEBUG [8dbfb0d9-46eb-4b8c-83f1-acfd692637e0] o.s.web.servlet.DispatcherServlet - GET "/clientes/cache/limpar", parameters={}
+2025-08-02 22:00:27.769 [http-nio-8080-exec-9] DEBUG [8dbfb0d9-46eb-4b8c-83f1-acfd692637e0] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.deliverytech.delivery_api.controller.ClienteController#limparCache()
+2025-08-02 22:00:27.771 [http-nio-8080-exec-9] DEBUG [8dbfb0d9-46eb-4b8c-83f1-acfd692637e0] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-08-02 22:00:27.771 [http-nio-8080-exec-9] DEBUG [8dbfb0d9-46eb-4b8c-83f1-acfd692637e0] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Nothing to write: null body
+2025-08-02 22:00:27.772 [http-nio-8080-exec-9] DEBUG [8dbfb0d9-46eb-4b8c-83f1-acfd692637e0] o.s.web.servlet.DispatcherServlet - Completed 204 NO_CONTENT
+2025-08-02 22:00:33.748 [http-nio-8080-exec-2] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id,
+        u1_0.ativo,
+        u1_0.data_criacao,
+        u1_0.email,
+        u1_0.nome,
+        u1_0.restaurante_id,
+        u1_0.role,
+        u1_0.senha 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+        and u1_0.ativo=?
+2025-08-02 22:00:33.756 [http-nio-8080-exec-2] DEBUG [12fc34b9-73d7-41f6-8c70-62dfd1019872] o.s.web.servlet.DispatcherServlet - GET "/clientes", parameters={}
+2025-08-02 22:00:33.757 [http-nio-8080-exec-2] DEBUG [12fc34b9-73d7-41f6-8c70-62dfd1019872] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.deliverytech.delivery_api.controller.ClienteController#listar()
+2025-08-02 22:00:36.769 [http-nio-8080-exec-2] DEBUG [12fc34b9-73d7-41f6-8c70-62dfd1019872] org.hibernate.SQL - 
+    /* <criteria> */ select
+        c1_0.id,
+        c1_0.ativo,
+        c1_0.data_cadastro,
+        c1_0.email,
+        c1_0.endereco,
+        c1_0.nome,
+        c1_0.telefone 
+    from
+        cliente c1_0 
+    where
+        c1_0.ativo
+2025-08-02 22:00:36.771 [http-nio-8080-exec-2] DEBUG [12fc34b9-73d7-41f6-8c70-62dfd1019872] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-08-02 22:00:36.772 [http-nio-8080-exec-2] DEBUG [12fc34b9-73d7-41f6-8c70-62dfd1019872] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: com.del (truncated)...]
+2025-08-02 22:00:36.773 [http-nio-8080-exec-2] DEBUG [12fc34b9-73d7-41f6-8c70-62dfd1019872] o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-08-02 22:00:56.024 [http-nio-8080-exec-1] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id,
+        u1_0.ativo,
+        u1_0.data_criacao,
+        u1_0.email,
+        u1_0.nome,
+        u1_0.restaurante_id,
+        u1_0.role,
+        u1_0.senha 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+        and u1_0.ativo=?
+2025-08-02 22:00:56.031 [http-nio-8080-exec-1] DEBUG [c4c3b914-bf23-44bb-b313-fe81bf0d80b5] o.s.web.servlet.DispatcherServlet - GET "/clientes", parameters={}
+2025-08-02 22:00:56.031 [http-nio-8080-exec-1] DEBUG [c4c3b914-bf23-44bb-b313-fe81bf0d80b5] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.deliverytech.delivery_api.controller.ClienteController#listar()
+2025-08-02 22:00:56.032 [http-nio-8080-exec-1] DEBUG [c4c3b914-bf23-44bb-b313-fe81bf0d80b5] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-08-02 22:00:56.032 [http-nio-8080-exec-1] DEBUG [c4c3b914-bf23-44bb-b313-fe81bf0d80b5] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: com.del (truncated)...]
+2025-08-02 22:00:56.034 [http-nio-8080-exec-1] DEBUG [c4c3b914-bf23-44bb-b313-fe81bf0d80b5] o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-08-02 22:01:20.287 [http-nio-8080-exec-3] DEBUG [] org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id,
+        u1_0.ativo,
+        u1_0.data_criacao,
+        u1_0.email,
+        u1_0.nome,
+        u1_0.restaurante_id,
+        u1_0.role,
+        u1_0.senha 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+        and u1_0.ativo=?
+2025-08-02 22:01:20.295 [http-nio-8080-exec-3] DEBUG [fe882a3a-e8e3-4271-af5b-93874fb84be6] o.s.web.servlet.DispatcherServlet - GET "/clientes/cache/limpar", parameters={}
+2025-08-02 22:01:20.296 [http-nio-8080-exec-3] DEBUG [fe882a3a-e8e3-4271-af5b-93874fb84be6] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.deliverytech.delivery_api.controller.ClienteController#limparCache()
+2025-08-02 22:01:20.297 [http-nio-8080-exec-3] DEBUG [fe882a3a-e8e3-4271-af5b-93874fb84be6] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-08-02 22:01:20.297 [http-nio-8080-exec-3] DEBUG [fe882a3a-e8e3-4271-af5b-93874fb84be6] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Nothing to write: null body
+2025-08-02 22:01:20.298 [http-nio-8080-exec-3] DEBUG [fe882a3a-e8e3-4271-af5b-93874fb84be6] o.s.web.servlet.DispatcherServlet - Completed 204 NO_CONTENT
