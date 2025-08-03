@@ -127,4 +127,34 @@ O projeto possui uma suíte de testes unitários e de integração para garantir
 
 -----
 
+## Otimização de Performance com Cache
+
+Para melhorar a performance e reduzir a carga no banco de dados, foi implementado um sistema de cache para a entidade `Cliente`.
+
+### Funcionalidades
+
+- **Cache de Listagem**: A rota `GET /clientes` tem seu resultado armazenado em cache após a primeira chamada. Requisições subsequentes para a mesma rota são atendidas de forma quase instantânea, pois os dados são recuperados da memória.
+- **Invalidação Automática**: O cache é automaticamente limpo (`evict`) sempre que um cliente é criado (`POST`), atualizado (`PUT`) ou inativado (`DELETE`). Isso garante a consistência dos dados e evita que informações desatualizadas sejam servidas.
+- **Invalidação Manual**: Foi criado um endpoint específico, `GET /clientes/cache/limpar`, para permitir a limpeza manual do cache, útil para cenários de manutenção ou depuração.
+
+### Implementação Técnica
+
+A funcionalidade foi implementada utilizando o suporte nativo do Spring Boot:
+
+1.  **`@EnableCaching`**: Adicionada à classe `Application.java` para ativar o framework de cache.
+2.  **`CacheConfig.java`**: Foi criada uma classe de configuração para definir explicitamente um `CacheManager` do tipo `ConcurrentMapCacheManager`, registrando o cache chamado `"clientes"`. Isso garante que o Spring saiba onde armazenar os dados cacheados.
+3.  **Anotações de Cache**:
+    - `@Cacheable("clientes")`: Utilizada no método `listarAtivos()` do `ClienteService`.
+    - `@CacheEvict(value = "clientes", allEntries = true)`: Utilizada nos métodos `cadastrar()`, `atualizar()` e `inativar()` do `ClienteService`, e também no endpoint de limpeza manual no `ClienteController`.
+
+### Como Testar o Cache
+
+1.  Inicie a aplicação.
+2.  Faça uma requisição **`GET /clientes`**. Observe que a primeira resposta terá uma latência maior (simulada em 3 segundos).
+3.  Faça a **mesma requisição** novamente. A resposta será quase instantânea.
+4.  Faça uma requisição **`GET /clientes/cache/limpar`**. Você receberá uma resposta `204 No Content`.
+5.  Repita o passo 2. A latência alta retornará, provando que o cache foi limpo com sucesso.
+
+---
+
 Desenvolvido com ❤️ por Ismael Barbosa Galdino Filho.
