@@ -1,0 +1,41 @@
+name: CI/CD Pipeline
+on:
+  push:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    # Faz o checkout do seu código
+    - uses: actions/checkout@v3
+
+    # Configura o ambiente para usar Java 21
+    - name: Set up JDK 21
+      uses: actions/setup-java@v3
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+
+    # Compila o projeto e empacota
+    - name: Build with Maven
+      run: mvn clean package -DskipTests
+
+    # Executa os testes
+    - name: Run Tests
+      run: mvn test
+
+    # Constrói a imagem Docker com o nome do seu usuário/nome da app
+    - name: Build Docker Image
+      run: |
+        docker build -t maelbg/delivery-api:latest .
+
+    # Faz o login no Docker Hub e envia a imagem
+    - name: Push Docker Image
+      run: |
+        echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+        docker push maelbg/delivery-api:latest
+
+    # Etapa de deploy
+    - name: Deploy
+      run: |
+        echo "Deploy automático executado" # Aqui pode ser script de deploy real
