@@ -1,13 +1,37 @@
-# docker-compose.yml
 version: '3.8'
-
 services:
-  prometheus:
-    image: prom/prometheus:latest
-    container_name: prometheus
+  # Serviço da sua aplicação
+  app:
+    build: .
     ports:
-      - "9090:9090" # Mapeia a porta 9090 do container para a porta 9090 da sua máquina.
+      - "8080:8080"
+    depends_on:
+      - db
+      - redis
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/delivery
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: userpass
+      SPRING_REDIS_HOST: redis
+
+  # Serviço do Banco de Dados MySQL
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: delivery
+      MYSQL_USER: user
+      MYSQL_PASSWORD: userpass
+    ports:
+      - "3306:3306"
     volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml # Monta o seu arquivo de configuração dentro do container.
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
+      - db_data:/var/lib/mysql
+
+  # Serviço do Redis (cache)
+  redis:
+    image: redis:7.0
+    ports:
+      - "6379:6379"
+
+volumes:
+  db_data:
